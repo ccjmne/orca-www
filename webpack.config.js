@@ -5,7 +5,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = (env, argv) => ({
   entry: {
     main: './index.js'
   },
@@ -46,18 +46,17 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new FaviconsWebpackPlugin({
-      logo: './assets/orca-splash.min.svg',
-      prefix: 'favicons/',
-      persistentCache: true,
-      inject: true,
-      background: '#fff',
-      title: 'Orca — la sécurité au travail'
-    }),
     new HtmlWebpackPlugin({
       template: 'index.html',
       chunks: ['main'],
       chunksSortMode: 'manual'
     })
-  ]
-};
+  ].concat(argv.mode === 'production' ? new FaviconsWebpackPlugin({
+    logo: './assets/orca-splash.min.svg',
+    prefix: 'favicons/',
+    persistentCache: true,
+    inject: true,
+    background: '#fff',
+    title: 'Orca — la sécurité au travail'
+  }) : [])
+});
