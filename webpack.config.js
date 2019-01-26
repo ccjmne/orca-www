@@ -1,6 +1,7 @@
 'use strict';
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
     }, {
       test: /\.s?css$/,
       use: [
-        { loader: 'style-loader', },
+        { loader: MiniCssExtractPlugin.loader },
         { loader: 'css-loader' }, {
           loader: 'sass-loader',
           options: { outputStyle: 'compressed' }
@@ -40,6 +41,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html',
       chunks: ['main'],
