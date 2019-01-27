@@ -2,8 +2,8 @@
 
 .column,
 .columns {
-  > svg:only-child,
-  > img:only-child {
+  > img:only-child,
+  > svg:only-child {
     margin-bottom: 2rem;
   }
 }
@@ -15,4 +15,10 @@
   .hero {
     text-align: right;
   }
+}
+
+body {
+  background-image: url('./assets/background.svg');
+  background-size: cover;
+  background-attachment: fixed;
 }

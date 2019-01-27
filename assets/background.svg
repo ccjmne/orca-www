@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin slice" viewBox="0 0 1100 1080">
+  <defs>
+    <linearGradient id="d">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#f0f0f0"/>
+    </linearGradient>
+    <linearGradient id="c">
+      <stop offset="0" stop-color="#fcfcfc"/>
+      <stop offset="1" stop-color="#f0f0f0"/>
+    </linearGradient>
+    <linearGradient id="b">
+      <stop offset="0" stop-color="#f0f0f0"/>
+      <stop offset="1" stop-color="#fafafa"/>
+    </linearGradient>
+    <linearGradient id="a">
+      <stop offset="0" stop-color="#ebebeb"/>
+      <stop offset="1" stop-color="#f0f0f0"/>
+    </linearGradient>
+    <linearGradient id="f" x1="-265" x2="-93" y1="329" y2="318" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="e" x1="-499" x2="-330" y1="192" y2="121" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+    <linearGradient id="g" x1="798" x2="304" y1="894" y2="50" gradientUnits="userSpaceOnUse" xlink:href="#c"/>
+    <linearGradient id="h" x1="606" x2="918" y1="-407" y2="767" gradientUnits="userSpaceOnUse" xlink:href="#d"/>
+  </defs>
+  <path fill="url(#e)" d="M-841 785C-631-375-364-642-364-642L110 850z" transform="translate(493 408)"/>
+  <path fill="#f3f3f3" d="M-36-150c208 968 608 1347 608 1347L775-271z"/>
+  <path fill="url(#f)" d="M-468 956C-243 242-81-366-81-366L771 731z" transform="translate(493 408)"/>
+  <path fill="#f9f9f9" d="M283-230C582 553 800 964 800 964l434-1241z"/>
+  <path fill="url(#g)" d="M235 871C445-354 762-613 762-613l425 1551z" transform="translate(493 408)"/>
+  <path fill="url(#h)" d="M257-744C467 527 783 795 783 795l425-1609z" transform="translate(493 408)"/>
+</svg>

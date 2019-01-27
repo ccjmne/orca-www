@@ -33,7 +33,7 @@ module.exports = (env, argv) => ({
         }
       ]
     }, {
-      test: /\.(png|svg|jpe?g|gif|ico)$/,
+      test: /\.(png|svg|jpe?g|gif|ico|webp)$/,
       use: [
         { loader: 'url-loader' },
         { loader: 'image-webpack-loader' }
