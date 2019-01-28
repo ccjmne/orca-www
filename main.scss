@@ -1,5 +1,8 @@
+$link-color: darken(saturate($primary-color, 50%), 10%) !default;
+
 @import './node_modules/skeleton-scss/scss/skeleton.scss';
 @import './styles/skeleton-getting-started.scss';
+@import './styles/animated-logo.scss';
 
 .column,
 .columns {
