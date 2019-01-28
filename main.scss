@@ -6,8 +6,8 @@ $link-color: darken(saturate($primary-color, 50%), 10%) !default;
 
 .column,
 .columns {
-  > img:only-child,
-  > svg:only-child {
+  > svg:only-child,
+  > img:only-child {
     margin-bottom: 2rem;
   }
 }
@@ -25,4 +25,16 @@ body {
   background-image: url('./assets/background.svg');
   background-size: cover;
   background-attachment: fixed;
+}
+
+.section.fancy {
+  background-image: linear-gradient(fade_out(darken($primary-color, 35%), .2), fade_out(darken($primary-color, 35%), .2)), url('./assets/section-background.webp');
+  background-size: cover;
+  color: #fff;
+  @media (min-width: 550px) {
+    clip-path: url('#concave');
+  }
+  @media (max-width: 550px) {
+    clip-path: url('#wave');
+  }
 }

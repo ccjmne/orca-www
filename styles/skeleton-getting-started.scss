@@ -37,15 +37,12 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .values {
-  background-image: linear-gradient(fade_out(darken(#337ab7, 35%), .2), fade_out(darken(#337ab7, 35%), .2)), url('./assets/section-background.webp');
-  background-size: cover;
-  color: #fff;
   padding-bottom: 5rem;
 }
 
 .value-multiplier {
   margin-bottom: .5rem;
-  color: #11DFC7;
+  color: lighten($primary-color, 20%);
 }
 
 .value-heading {
@@ -56,21 +53,8 @@
   opacity: .8;
   font-weight: 300;
 }
-/* Help
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-.get-help {
-  border-bottom: 1px solid #ddd;
-}
 /* Categories
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-.categories {
-  background-image: linear-gradient(fade_out(darken(#337ab7, 35%), .2), fade_out(darken(#337ab7, 35%), .2)), url('./assets/section-background.webp');
-  background-size: cover;
-  color: #fff;
-}
-
 .categories .section-description {
   margin-bottom: 4rem;
 }
