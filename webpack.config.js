@@ -5,9 +5,12 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const path = require('path'),
+  assets = path.resolve(__dirname, 'assets');
+
 module.exports = (env, argv) => ({
   entry: {
-    main: './index.js'
+    main: path.resolve(__dirname, 'index.js')
   },
   module: {
     rules: [{
@@ -27,10 +30,9 @@ module.exports = (env, argv) => ({
       test: /\.s?css$/,
       use: [
         { loader: MiniCssExtractPlugin.loader },
-        { loader: 'css-loader' }, {
-          loader: 'sass-loader',
-          options: { outputStyle: 'compressed' }
-        }
+        { loader: 'css-loader' },
+        { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
+        { loader: '@epegzz/sass-vars-loader', options: { syntax: 'scss', files: [path.resolve(__dirname, 'styles/variables.js')] } }
       ]
     }, {
       test: /\.(png|svg|jpe?g|gif|ico|webp)$/,
@@ -47,12 +49,12 @@ module.exports = (env, argv) => ({
       chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: path.resolve(__dirname, 'index.html'),
       chunks: ['main'],
       chunksSortMode: 'manual'
     })
   ].concat(argv.mode === 'production' ? new FaviconsWebpackPlugin({
-    logo: './assets/orca-splash.min.svg',
+    logo: path.resolve(assets, 'orca-splash.min.svg'),
     prefix: 'favicons/',
     persistentCache: true,
     inject: true,
