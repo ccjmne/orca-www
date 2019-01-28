@@ -4,8 +4,8 @@
   "description": "Landing page for NCLS Development's Orca solution",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode development --content-base dist",
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --mode development --content-base dist --port 8001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
