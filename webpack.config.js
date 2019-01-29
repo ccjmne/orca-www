@@ -12,6 +12,9 @@ module.exports = (env, argv) => ({
   entry: {
     main: path.resolve(__dirname, 'index.js')
   },
+  optimization: {
+    usedExports: true
+  },
   module: {
     rules: [{
       test: /\.js$/,
