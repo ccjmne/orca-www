@@ -42,8 +42,8 @@ module.exports = (env, argv) => ({
       ]
     }]
   },
-  plugins: [
-    new CleanWebpackPlugin('dist'),
+  plugins: [].concat(
+    (argv.mode === 'production' ? new CleanWebpackPlugin('dist') : []),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
@@ -52,13 +52,14 @@ module.exports = (env, argv) => ({
       template: path.resolve(__dirname, 'index.html'),
       chunks: ['main'],
       chunksSortMode: 'manual'
-    })
-  ].concat(argv.mode === 'production' ? new FaviconsWebpackPlugin({
-    logo: path.resolve(assets, 'orca-splash.min.svg'),
-    prefix: 'favicons/',
-    persistentCache: true,
-    inject: true,
-    background: '#fff',
-    title: 'Orca — la sécurité au travail'
-  }) : [])
+    }),
+    (argv.mode === 'production' ? new FaviconsWebpackPlugin({
+      logo: path.resolve(assets, 'orca-splash.min.svg'),
+      prefix: 'favicons/',
+      persistentCache: true,
+      inject: true,
+      background: '#fff',
+      title: 'Orca — la sécurité au travail'
+    }) : [])
+  )
 });
