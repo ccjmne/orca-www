@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "animejs": "^3.0.1",
+    "d3": "^5.8.0",
     "skeleton-scss": "^2.0.4"
   }
 }
