@@ -1,4 +1,4 @@
 'use strict';
 
 require('./main.scss');
-require('./src/animated-logo');
+require('./src/orca-logo/orca-logo');

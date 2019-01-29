@@ -24,7 +24,7 @@ module.exports = (env, argv) => ({
       test: /\.html$/,
       use: [{
         loader: 'html-loader',
-        options: { minimize: true, interpolate: true }
+        options: { interpolate: true }
       }]
     }, {
       test: /\.s?css$/,
