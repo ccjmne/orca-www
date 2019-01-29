@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --mode development --content-base dist --port 8001",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --mode development --content-base dist --port 8001"
   },
   "repository": {
     "type": "git",
@@ -29,9 +28,7 @@
     "@epegzz/sass-vars-loader": "^4.0.0",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
-    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
-    "extract-text-webpack-plugin": "^3.0.2",
     "favicons-webpack-plugin": "0.0.9",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
