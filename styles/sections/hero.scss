@@ -1,0 +1,10 @@
+.section.hero {
+  @media ($bp-larger-than-phablet) {
+    text-align: right;
+  }
+}
+
+orca-logo {
+  --primary-color: #{$primary-color};
+  margin-bottom: 2rem;
+}

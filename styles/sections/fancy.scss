@@ -1,0 +1,13 @@
+.section.fancy {
+  background-image: linear-gradient(fade_out(darken($primary-color, 35%), .2), fade_out(darken($primary-color, 35%), .2)), url('./assets/section-background.webp');
+  background-size: cover;
+  color: #fff;
+  clip-path: url('#wave');
+  @media ($bp-larger-than-phablet) {
+    clip-path: url('#concave');
+  }
+
+  h2 {
+    color: lighten($primary-color, 20%);
+  }
+}
