@@ -2,28 +2,29 @@
 /* jshint camelcase: false */
 require('./interactive-chart.scss');
 
-const d3 = require('d3');
-
 const $scope = { overTime: {} };
 
-const dateBisector = d3.bisector(d => d.date).left;
+import { bisector, extent, max } from 'd3-array';
+import { axisLeft, axisBottom } from 'd3-axis';
+import { easeCubicInOut as easing } from 'd3-ease';
+import { format } from 'd3-format';
+import { scaleLinear, scaleTime } from 'd3-scale';
+import { mouse, select } from 'd3-selection';
+import { area, line, curveMonotoneX as curve } from 'd3-shape';
+import { timeFormat } from 'd3-time-format';
+import 'd3-transition';
+
+const dateBisector = bisector(({ date }) => date).left;
 
 function getClosestEntry(data, scale, pos) {
   const date = scale.invert(pos),
     idx = dateBisector(data, date),
-    hi = data[idx],
-    lo = data[idx - 1];
-
-  if (hi === undefined) {
-    return lo;
-  }
-
-  if (lo === undefined) {
-    return hi;
-  }
-
+    lo = data[idx - 1] || {},
+    hi = data[idx] || {};
   return date - lo.date > hi.date - date ? hi : lo;
 }
+
+const transition = (element, duration = 50) => element.transition().duration(duration).ease(easing);
 
 let xAxis, yAxis, areaAboveCount, areaAboveTarget, areaBelowCount, areaBelowTarget, certLegend, x, y, svg, targetLine, countLine;
 let certData;
@@ -46,11 +47,11 @@ function initSvg(placeholder) {
 
   svg = placeholder.append('g').attr('transform', `translate(${ margin.left }, ${ margin.top })`);
 
-  x = d3.scaleTime().range([0, width]).nice();
-  y = d3.scaleLinear().range([height, 0]).nice();
+  x = scaleTime().range([0, width]).nice();
+  y = scaleLinear().range([height, 0]).nice();
 
-  xAxis = d3.axisBottom().ticks(width / 100);
-  yAxis = d3.axisLeft().ticks(height / 30);
+  xAxis = axisBottom().ticks(width / 100);
+  yAxis = axisLeft().ticks(height / 30);
 
   // GRID
   const grid = svg.append('g');
@@ -65,13 +66,13 @@ function initSvg(placeholder) {
   // LINES AND AREAS FUNCTIONS DEFINITION
   // ---------------------------------------------------------
 
-  countLine = d3.line().curve(d3.curveMonotoneX).x(d => x(d.date)).y(d => y(d.count));
-  targetLine = d3.line().curve(d3.curveMonotoneX).x(countLine.x()).y(d => y(d.target));
+  countLine = line().curve(curve).x(d => x(d.date)).y(d => y(d.count));
+  targetLine = line().curve(curve).x(countLine.x()).y(d => y(d.target));
 
-  areaAboveCount = d3.area().curve(d3.curveMonotoneX).x(countLine.x()).y0(countLine.y()).y1(0);
-  areaAboveTarget = d3.area().curve(d3.curveMonotoneX).x(targetLine.x()).y0(targetLine.y()).y1(0);
-  areaBelowCount = d3.area().curve(d3.curveMonotoneX).x(countLine.x()).y0(countLine.y()).y1(height);
-  areaBelowTarget = d3.area().curve(d3.curveMonotoneX).x(targetLine.x()).y0(targetLine.y()).y1(height);
+  areaAboveCount = area().curve(curve).x(countLine.x()).y0(countLine.y()).y1(0);
+  areaAboveTarget = area().curve(curve).x(targetLine.x()).y0(targetLine.y()).y1(0);
+  areaBelowCount = area().curve(curve).x(countLine.x()).y0(countLine.y()).y1(height);
+  areaBelowTarget = area().curve(curve).x(targetLine.x()).y0(targetLine.y()).y1(height);
 
   // ---------------------------------------------------------
   // SVG ELEMENTS PLACEHOLDERS
@@ -143,41 +144,41 @@ function initSvg(placeholder) {
       $scope.mouseY = null;
     })
     .on('mousemove', function () {
-      $scope.mouseY = d3.mouse(this)[0];
+      $scope.mouseY = mouse(this)[0];
       $scope.updateHighlight();
     });
 
   $scope.updateHighlight = function (transitionDuration = 50) {
     if ($scope.mouseY) {
       const d = getClosestEntry(certData, x, $scope.mouseY);
-      highlightCount.transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('transform', `translate(${ x(d.date) }, ${ y(d.count) })`);
+      highlightCount.transition().duration(transitionDuration).ease(easing).attr('transform', `translate(${ x(d.date) }, ${ y(d.count) })`);
       highlightCount.selectAll('text')
-        .transition().duration(transitionDuration).ease(d3.easeCubicInOut)
+        .transition().duration(transitionDuration).ease(easing)
         .attr('transform', 'translate(0, ' + (d.target > d.count ? 17 : -8) + ')')
         .text($scope.overTime.cert.cert_short + ' : ' + d.count);
 
-      highlightTarget.transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('transform', `translate(${ x(d.date) }, ${ y(d.target) })`);
+      highlightTarget.transition().duration(transitionDuration).ease(easing).attr('transform', `translate(${ x(d.date) }, ${ y(d.target) })`);
       highlightTarget.selectAll('text')
-        .transition().duration(transitionDuration).ease(d3.easeCubicInOut)
+        .transition().duration(transitionDuration).ease(easing)
         .attr('transform', 'translate(0, ' + (d.target > d.count ? -8 : 17) + ')')
         .text('Cible : ' + d.target);
 
-      highlightAbscissa.transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('transform', `translate(${ x(d.date) }, 0)`);
-      highlightOrdinateCount.transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('transform', `translate(0, ${ y(d.count) })`);
-      highlightOrdinateTarget.transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('transform', `translate(0, ${ y(d.target) })`);
+      highlightAbscissa.transition().duration(transitionDuration).ease(easing).attr('transform', `translate(${ x(d.date) }, 0)`);
+      highlightOrdinateCount.transition().duration(transitionDuration).ease(easing).attr('transform', `translate(0, ${ y(d.count) })`);
+      highlightOrdinateTarget.transition().duration(transitionDuration).ease(easing).attr('transform', `translate(0, ${ y(d.target) })`);
 
-      highlightAbscissaTick.select('text').text(d3.timeFormat('%d %b %Y')(d.date));
+      highlightAbscissaTick.select('text').text(timeFormat('%d %b %Y')(d.date));
     }
   };
 }
 
 Promise.all([require('./certificates.sample.json'), require('./stats.sample.json')]).then(([certificates, sitesHistory]) => {
   new Promise(function trySelectPlaceholder(resolve) {
-    if (d3.select('svg#interactive-chart').empty()) {
+    if (select('svg#interactive-chart').empty()) {
       return setTimeout(trySelectPlaceholder.bind(this, resolve), 100);
     }
 
-    resolve(d3.select('svg#interactive-chart'));
+    resolve(select('svg#interactive-chart'));
   }).then(placeholder => {
     initSvg(placeholder);
     $scope.certificates = Object.values(certificates).sort(c => c.cert_order);
@@ -192,24 +193,24 @@ $scope.displayData = function (cert_pk, skipTransitions) {
   $scope.overTime.cert = $scope.certificates.find(c => c.cert_pk === cert_pk);
   certData = $scope.data.map(({ date, stats }) => ({ date: new Date(date), count: stats[cert_pk].current, target: stats[cert_pk].target }));
 
-  x.domain(d3.extent(certData, d => d.date)).nice();
-  y.domain([0, certData.reduce((max, entry) => d3.max([max, entry.count, entry.target]), 0)]).nice();
+  x.domain(extent(certData, d => d.date)).nice();
+  y.domain([0, certData.reduce((mx, entry) => max([mx, entry.count, entry.target]), 0)]).nice();
 
   xAxis.scale(x);
   yAxis.scale(y);
 
-  const transitionDuration = skipTransitions ? 0 : 1000;
-  $scope.updateHighlight(transitionDuration);
-  svg.select('.x.axis').transition().duration(transitionDuration).ease(d3.easeCubicInOut).call(xAxis.tickSize(6, 0).tickFormat(date => (date.getMonth() ? d3.timeFormat('%B') : d3.timeFormat('%Y'))(date)));
-  svg.select('.y.axis').transition().duration(transitionDuration).ease(d3.easeCubicInOut).call(yAxis.tickSize(6, 0).tickFormat(d3.format('d')));
+  const duration = skipTransitions ? 0 : 1000;
+  $scope.updateHighlight(duration);
+  transition(svg.select('.x.axis'), duration).call(xAxis.tickSize(6, 0).tickFormat(date => (date.getMonth() ? timeFormat('%B') : timeFormat('%Y'))(date)));
+  transition(svg.select('.y.axis'), duration).call(yAxis.tickSize(6, 0).tickFormat(format('d')));
 
-  svg.select('#clip-count path').transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('d', areaAboveCount(certData));
-  svg.select('#clip-target path').transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('d', areaAboveTarget(certData));
-  svg.select('.count.area').transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('d', areaBelowCount(certData));
-  svg.select('.target.area').transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('d', areaBelowTarget(certData));
+  transition(svg.select('#clip-count path'), duration).attr('d', areaAboveCount(certData));
+  transition(svg.select('#clip-target path'), duration).attr('d', areaAboveTarget(certData));
+  transition(svg.select('.count.area'), duration).attr('d', areaBelowCount(certData));
+  transition(svg.select('.target.area'), duration).attr('d', areaBelowTarget(certData));
 
-  svg.select('.target.line').transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('d', targetLine(certData));
-  svg.select('.count.line').transition().duration(transitionDuration).ease(d3.easeCubicInOut).attr('d', countLine(certData));
+  transition(svg.select('.target.line'), duration).attr('d', targetLine(certData));
+  transition(svg.select('.count.line'), duration).attr('d', countLine(certData));
 
   certLegend.text($scope.overTime.cert.cert_short);
 };
