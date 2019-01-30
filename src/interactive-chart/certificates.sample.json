@@ -1,0 +1,50 @@
+{
+  "1": {
+    "cert_pk": 1,
+    "cert_name": "Sauveteur Secouriste du Travail",
+    "cert_target": 15,
+    "cert_permanentonly": false,
+    "cert_short": "SST",
+    "cert_order": 1
+  },
+  "2": {
+    "cert_pk": 2,
+    "cert_name": "Équipement de Première Intervention",
+    "cert_target": 66,
+    "cert_permanentonly": false,
+    "cert_short": "EPI",
+    "cert_order": 2
+  },
+  "3": {
+    "cert_pk": 3,
+    "cert_name": "Sensibilisation Défibrillation",
+    "cert_target": 30,
+    "cert_permanentonly": false,
+    "cert_short": "DAE",
+    "cert_order": 3
+  },
+  "4": {
+    "cert_pk": 4,
+    "cert_name": "Habilitation Électrique",
+    "cert_target": 20,
+    "cert_permanentonly": false,
+    "cert_short": "H0B0",
+    "cert_order": 4
+  },
+  "5": {
+    "cert_pk": 5,
+    "cert_name": "Agent d'Évacuation",
+    "cert_target": 30,
+    "cert_permanentonly": false,
+    "cert_short": "EVAC",
+    "cert_order": 5
+  },
+  "6": {
+    "cert_pk": 6,
+    "cert_name": "Formateur SST",
+    "cert_target": 0,
+    "cert_permanentonly": false,
+    "cert_short": "FSST",
+    "cert_order": 6
+  }
+}

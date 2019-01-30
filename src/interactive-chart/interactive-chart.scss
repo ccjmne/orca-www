@@ -1,0 +1,97 @@
+$count-color: $primary-color;
+$target-color: grey;
+
+svg#interactive-chart {
+  max-width: 550px;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+}
+
+.axis {
+  opacity: 1;
+
+  line,
+  path {
+    stroke-dasharray: 0;
+    stroke: #000;
+    fill: none;
+    shape-rendering: crispEdges;
+  }
+
+  text {
+    stroke: none;
+    font: 10px sans-serif;
+  }
+}
+
+.highlight-coordinates {
+  stroke-dasharray: 10 5;
+  stroke: grey;
+  opacity: .5;
+  shape-rendering: crispEdges;
+}
+
+.grid {
+  opacity: .5;
+
+  .tick line {
+    stroke: lightgrey;
+    shape-rendering: crispEdges;
+  }
+
+  .domain {
+    stroke: none;
+  }
+}
+
+.line {
+  fill: none;
+
+  &.target {
+    stroke-dasharray: 10 5;
+    stroke: $target-color;
+    @at-root circle#{&} {
+      stroke-width: 2px;
+      stroke-dasharray: none;
+    }
+  }
+
+  &.count {
+    stroke-width: 2px;
+    stroke: $count-color;
+  }
+  @at-root circle#{&} {
+    fill: white;
+  }
+}
+
+.area {
+  opacity: .6;
+
+  &.target {
+    opacity: .3;
+    fill: $target-color;
+  }
+
+  &.count {
+    fill: $count-color;
+  }
+}
+
+text {
+  font: 14px sans-serif;
+
+  &.target {
+    fill: $target-color;
+  }
+
+  &.count {
+    fill: $count-color;
+  }
+}
+
+.highlight-shadow {
+  stroke-width: 3px;
+  stroke: white;
+  opacity: .8;
+}
