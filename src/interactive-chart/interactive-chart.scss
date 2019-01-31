@@ -7,6 +7,12 @@ svg#interactive-chart {
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
 }
 
+.hover-zone {
+  fill: none;
+  cursor: crosshair;
+  pointer-events: all;
+}
+
 .axis {
   opacity: 1;
 
@@ -16,11 +22,6 @@ svg#interactive-chart {
     stroke: #000;
     fill: none;
     shape-rendering: crispEdges;
-  }
-
-  text {
-    stroke: none;
-    font: 10px sans-serif;
   }
 }
 
@@ -88,10 +89,10 @@ text {
   &.count {
     fill: $count-color;
   }
-}
 
-.highlight-shadow {
-  stroke-width: 3px;
-  stroke: white;
-  opacity: .8;
+  &.highlight-shadow {
+    stroke-width: 3px;
+    stroke: white;
+    opacity: .8;
+  }
 }
