@@ -12,6 +12,7 @@ module.exports = (env, argv) => ({
   entry: {
     main: path.resolve(__dirname, 'index.js')
   },
+  devtool: 'cheap-module-eval-source-map',
   optimization: {
     usedExports: true
   },
