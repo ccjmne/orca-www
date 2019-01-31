@@ -1,6 +1,5 @@
 'use strict';
 /* jshint camelcase: false */
-require('./interactive-chart.scss');
 
 const $scope = { overTime: {} };
 
