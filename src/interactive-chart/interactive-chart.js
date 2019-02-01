@@ -12,7 +12,11 @@ import { timeFormat } from 'd3-time-format';
 import 'd3-transition';
 
 const certificates = Object.values(require('./certificates.sample.json')).sort(({ cert_order }) => cert_order);
-const data = require('./stats.sample.json');
+const data = (scale => require('./stats.sample.min.json').map((data, idx) => ({
+  date: scale.invert(idx),
+  stats: data.reduce((acc, [current, target], idx) => (acc[idx + 1] = { current: current + Math.floor(Math.random() * target / 8), target }, acc), {})
+})))((now => scaleTime([new Date(now.getFullYear() - 1, 0, 1), now], [0, 99]))(new Date()));
+
 const dateBisector = bisector(({ date }) => date).left;
 
 class InteractiveChart {
