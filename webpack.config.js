@@ -10,7 +10,8 @@ const path = require('path'),
 
 module.exports = (env, argv) => ({
   entry: {
-    main: path.resolve(__dirname, 'index.js')
+    main: path.resolve(__dirname, 'index.js'),
+    logo: path.resolve(__dirname, 'src/orca-logo/orca-logo.js')
   },
   devtool: (argv.mode === 'production' ? '' : 'cheap-module-eval-source-map'),
   optimization: {
@@ -54,7 +55,7 @@ module.exports = (env, argv) => ({
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
-      chunks: ['main'],
+      chunks: ['logo', 'main'],
       chunksSortMode: 'manual'
     }),
     (argv.mode === 'production' ? new FaviconsWebpackPlugin({
