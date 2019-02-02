@@ -1,1 +1,5 @@
 $link-color: darken(saturate($primary-color, 50%), 10%) !default;
+
+orca-logo {
+  --primary-color: #{$primary-color};
+}
