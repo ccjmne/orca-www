@@ -4,8 +4,8 @@ orca-logo {
   circle,
   path {
     &[colour=primary] {
-      stroke: var(--primary-color, '#337ab7');
-      fill: var(--primary-color, '#337ab7');
+      stroke: var(--primary-color, #337ab7);
+      fill: var(--primary-color, #337ab7);
     }
 
     &[colour=black] {
