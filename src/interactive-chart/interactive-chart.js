@@ -189,7 +189,7 @@ class InteractiveChart {
   }
 
   get height() {
-    return 200;
+    return 250;
   }
 }
 

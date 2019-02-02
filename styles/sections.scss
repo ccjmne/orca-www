@@ -12,15 +12,15 @@
   }
   @media ($bp-larger-than-tablet) {
     padding: 15rem 0 14rem;
+
+    .container > .section-description {
+      max-width: 60%;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 
   .section-heading {
     margin-bottom: 1.2rem;
-  }
-
-  .container > .section-description {
-    max-width: 60%;
-    margin-right: auto;
-    margin-left: auto;
   }
 }
