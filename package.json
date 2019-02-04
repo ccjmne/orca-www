@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --mode development --content-base dist --port 8001"
+    "dev": "webpack-dev-server --mode development --content-base dist --port 8001",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
