@@ -2,17 +2,26 @@
   .media-section {
     display: grid;
     grid-gap: 4%;
-    margin-top: 7rem;
+    align-items: center;
 
-    > * {
-      align-self: center;
+    + .media-section {
+      margin-top: 7rem;
     }
 
     .diagram-media {
       grid-row: 1;
+      max-width: 550px;
+
+      img {
+        width: 100%;
+      }
     }
     @media ($bp-larger-than-tablet) {
       grid-template-columns: 1fr 1fr;
+
+      + .media-section {
+        margin-top: 10rem;
+      }
 
       .diagram-media {
         grid-row: unset;
@@ -24,6 +33,26 @@
 
       .diagram-media + .diagram-desc {
         text-align: left;
+      }
+    }
+  }
+
+  .rotating-cards-container {
+    position: relative;
+    perspective: 1000px;
+
+    img {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+    }
+
+    .rotating-card {
+      border-radius: 3px;
+      opacity: 0;
+
+      +.rotating-card {
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
   }
