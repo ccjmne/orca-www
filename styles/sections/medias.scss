@@ -42,11 +42,10 @@
     perspective: 1000px;
 
     img {
-      box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+      @include card;
     }
 
     .rotating-card {
-      border-radius: 3px;
       opacity: 0;
 
       +.rotating-card {
@@ -63,15 +62,14 @@
     height: calc(420px / 1.5);
 
     #pdf {
+      @include card;
       display: flex;
       flex-direction: column;
       width: calc(210px / 1.5);
       height: calc(297px / 1.5);
-      overflow: hidden;
-      border-radius: 3px;
       background-image: url('./assets/background.svg');
+      background-position: center center;
       background-size: cover;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
 
       &.landscape {
         .footer,
