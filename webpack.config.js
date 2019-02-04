@@ -15,7 +15,16 @@ module.exports = (env, argv) => ({
   },
   devtool: (argv.mode === 'production' ? '' : 'cheap-module-eval-source-map'),
   optimization: {
-    usedExports: true
+    usedExports: true,
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /node_modules/
+        }
+      }
+    }
   },
   module: {
     rules: [{
@@ -55,7 +64,7 @@ module.exports = (env, argv) => ({
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
-      chunks: ['logo', 'main'],
+      chunks: ['vendors', 'logo', 'main'],
       chunksSortMode: 'manual'
     }),
     (argv.mode === 'production' ? new FaviconsWebpackPlugin({
