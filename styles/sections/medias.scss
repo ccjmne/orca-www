@@ -56,4 +56,53 @@
       }
     }
   }
+
+  .pdf-container {
+    @include center-content;
+    position: relative;
+    height: calc(420px / 1.5);
+
+    #pdf {
+      display: flex;
+      flex-direction: column;
+      width: calc(210px / 1.5);
+      height: calc(297px / 1.5);
+      overflow: hidden;
+      border-radius: 3px;
+      background-image: url('./assets/background.svg');
+      background-size: cover;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+
+      &.landscape {
+        .footer,
+        .header {
+          height: 15%;
+        }
+      }
+
+      .footer,
+      .header {
+        height: 10%;
+        transition: height .5s;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .header {
+        background-image: url('./assets/pdf-header.svg');
+        background-position: bottom;
+      }
+
+      .footer {
+        background-image: url('./assets/pdf-footer.svg');
+        background-position: top;
+      }
+
+      .center {
+        @include center-content;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+    }
+  }
 }
