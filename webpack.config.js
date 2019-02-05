@@ -4,6 +4,20 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const minify = {
+  removeComments: true,
+  removeCommentsFromCDATA: true,
+  removeCDATASectionsFromCDATA: true,
+  collapseWhitespace: true,
+  conservativeCollapse: true,
+  removeAttributeQuotes: true,
+  useShortDoctype: true,
+  keepClosingSlash: true,
+  minifyJS: true,
+  minifyCSS: true,
+  removeScriptTypeAttributes: true,
+  removeStyleTypeAttributes: true
+};
 
 const path = require('path'),
   assets = path.resolve(__dirname, 'assets');
@@ -38,7 +52,7 @@ module.exports = (env, argv) => ({
       test: /\.html$/,
       use: [{
         loader: 'html-loader',
-        options: { interpolate: true }
+        options: { interpolate: true, minify }
       }]
     }, {
       test: /\.s?css$/,
@@ -65,7 +79,8 @@ module.exports = (env, argv) => ({
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
       chunks: ['vendors', 'logo', 'main'],
-      chunksSortMode: 'manual'
+      chunksSortMode: 'manual',
+      minify
     }),
     (argv.mode === 'production' ? new FaviconsWebpackPlugin({
       logo: path.resolve(assets, 'orca-splash.min.svg'),
