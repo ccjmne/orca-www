@@ -21,12 +21,14 @@ const minify = {
 };
 
 const path = require('path'),
-  assets = path.resolve(__dirname, 'assets');
+  assets = path.resolve(__dirname, 'assets'),
+  src = path.resolve(__dirname, 'src');
 
 module.exports = (env, argv) => ({
   entry: {
     main: path.resolve(__dirname, 'index.js'),
-    logo: path.resolve(__dirname, 'src/orca-logo/orca-logo.js')
+    logo: path.resolve(src, 'orca-logo/orca-logo.js'),
+    reveal: path.resolve(src, 'reveal.js')
   },
   devtool: (argv.mode === 'production' ? '' : 'cheap-module-eval-source-map'),
   optimization: {
@@ -35,8 +37,8 @@ module.exports = (env, argv) => ({
       cacheGroups: {
         vendors: {
           name: 'vendors',
-          chunks: 'all',
-          test: /node_modules/
+          chunks: 'initial',
+          test: /animejs/
         }
       }
     }
@@ -80,7 +82,7 @@ module.exports = (env, argv) => ({
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
-      chunks: ['vendors', 'logo', 'main'],
+      chunks: ['vendors', 'logo', 'main', 'reveal'],
       chunksSortMode: 'manual',
       minify
     }),
