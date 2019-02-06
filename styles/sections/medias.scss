@@ -44,6 +44,18 @@
     .rotating-card {
       opacity: 0;
 
+      &.scanning-card {
+        max-height: 150px;
+        overflow-y: hidden;
+        @media ($bp-larger-than-tablet) {
+          max-height: 180px;
+        }
+
+        > img {
+          position: relative;
+        }
+      }
+
       +.rotating-card {
         position: absolute;
         top: 0;

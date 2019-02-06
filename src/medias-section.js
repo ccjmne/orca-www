@@ -4,8 +4,8 @@ import anime from 'animejs';
 
 // rotating certification cards
 const freezeDuration = 5000;
-anime({
-  targets: '.rotating-card',
+document.querySelectorAll('.rotating-cards-container').forEach(container => anime({
+  targets: container.querySelectorAll('.rotating-card'),
   keyframes: [{
       translateX: ['50%', '0'],
       rotateY: ['90deg', '0'],
@@ -23,6 +23,18 @@ anime({
     }
   ],
   delay: anime.stagger(1.25 * freezeDuration),
+  loop: true
+}));
+
+// scanning cards
+const { value: scanHeight } = document.querySelector('.rotating-card.scanning-card').computedStyleMap().get('max-height');
+anime({
+  targets: '.rotating-card.scanning-card > img',
+  top: ({ height }) => [0, `-${ height - scanHeight }px`],
+  easing: 'easeInOutSine',
+  duration: freezeDuration / 4,
+  delay: anime.stagger(1.25 * freezeDuration, { start: freezeDuration / 2 }),
+  endDelay: anime.stagger(1.25 * freezeDuration, { start: freezeDuration / 2, direction: 'reverse' }),
   loop: true
 });
 
