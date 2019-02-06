@@ -1,6 +1,8 @@
 'use strict';
 // jshint camelcase: false
 
+import { Interval } from '../interval';
+
 import { bisector, extent, max } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { easeCubicInOut as easing } from 'd3-ease';
@@ -194,6 +196,5 @@ class InteractiveChart {
 }
 
 const chart = new InteractiveChart('svg#interactive-chart');
-chart.displayData(certificates[0], true);
-let idx = 1;
-setInterval(() => chart.displayData(certificates[idx = (idx + 1) % certificates.length]), 3000);
+let idx = -1;
+new Interval(5000).do(() => chart.displayData(certificates[idx = (idx + 1) % certificates.length]));
