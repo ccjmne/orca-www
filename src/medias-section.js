@@ -27,10 +27,10 @@ document.querySelectorAll('.rotating-cards-container').forEach(container => anim
 }));
 
 // scanning cards
-const { value: scanHeight } = document.querySelector('.rotating-card.scanning-card').computedStyleMap().get('max-height');
+const [, maxHeight] = /^(\d+)px$/.exec(window.getComputedStyle(document.querySelector('.rotating-card.scanning-card')).maxHeight);
 anime({
   targets: '.rotating-card.scanning-card > img',
-  top: ({ height }) => [0, `-${ height - scanHeight }px`],
+  top: ({ height }) => [0, `-${ height - parseInt(maxHeight) }px`],
   easing: 'easeInOutSine',
   duration: freezeDuration / 4,
   delay: anime.stagger(1.25 * freezeDuration, { start: freezeDuration / 2 }),
