@@ -56,6 +56,9 @@
     @include center-content;
     position: relative;
     height: calc(420px / 1.5);
+    @media ($bp-larger-than-tablet) {
+      height: calc(420px / 2);
+    }
 
     #pdf {
       display: flex;
