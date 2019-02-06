@@ -2,7 +2,6 @@ $count-color: $primary-color;
 $target-color: grey;
 
 svg#interactive-chart {
-  @include card;
   max-width: 550px;
   background-color: white;
 }
