@@ -42,18 +42,18 @@ class InteractiveChart {
     };
 
     const defs = this.svg.append('defs');
-    ['count', 'target'].forEach(value => this[value] = (({ x, y }) => ({
-      line: {
-        elem: this.svg.append('path').attr('class', `${ value } line`),
-        fn: line().curve(curve).x(x).y(y)
-      },
+    [{ name: 'danger', data: 'target' }, { name: 'target', data: 'target' }, { name: 'count', data: 'count' }].forEach(({ name, data }) => this[name] = (({ x, y, y2thirds }) => ({
       area: {
-        elem: this.svg.append('path').attr('class', `${ value } area`).attr('clip-path', `url(#clip-${ value })`),
-        clip: defs.append('clipPath').attr('id', `clip-${ value }`).append('path'),
-        above: area().curve(curve).x(x).y0(y).y1(0),
-        below: area().curve(curve).x(x).y0(y).y1(this.chartHeight)
+        elem: this.svg.append('path').attr('class', `${ name } area`).attr('clip-path', `url(#clip-${ data })`),
+        clip: defs.append('clipPath').attr('id', `clip-${ name }`).append('path'),
+        above: area().curve(curve).x(x).y0(y).y1(name === 'danger' ? y2thirds : 0),
+        below: area().curve(curve).x(x).y0(name === 'danger' ? y2thirds : y).y1(this.chartHeight)
+      },
+      line: {
+        elem: this.svg.append('path').attr('class', `${ name } line`),
+        fn: line().curve(curve).x(x).y(y)
       }
-    }))({ x: ({ date }) => this.axes.x.scale(date), y: d => this.axes.y.scale(d[value]) }));
+    }))({ x: ({ date }) => this.axes.x.scale(date), y: d => this.axes.y.scale(d[data]), y2thirds: d => this.axes.y.scale(d[data] * 2 / 3) }));
 
     this.crosshairs = (g => ({
       g,
@@ -144,8 +144,10 @@ class InteractiveChart {
     transition(this.count.line.elem).attr('d', this.count.line.fn(this.data));
 
     transition(this.target.area.clip).attr('d', this.count.area.above(this.data));
-    transition(this.target.area.elem).attr('d', this.target.area.below(this.data));
+    transition(this.target.area.elem).attr('d', this.danger.area.above(this.data));
     transition(this.target.line.elem).attr('d', this.target.line.fn(this.data));
+
+    transition(this.danger.area.elem).attr('d', this.danger.area.below(this.data));
 
     if (this.hovering) {
       this.updateHighlight(duration);

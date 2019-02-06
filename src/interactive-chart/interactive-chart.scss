@@ -4,94 +4,101 @@ $target-color: grey;
 svg#interactive-chart {
   max-width: 550px;
   background-color: white;
-}
 
-.hover-zone {
-  fill: none;
-  cursor: crosshair;
-  pointer-events: all;
-}
-
-.axis {
-  opacity: 1;
-
-  line,
-  path {
-    stroke-dasharray: 0;
-    stroke: #000;
+  .hover-zone {
     fill: none;
-    shape-rendering: crispEdges;
-  }
-}
-
-.highlight-coordinates {
-  stroke-dasharray: 10 5;
-  stroke: grey;
-  opacity: .5;
-  shape-rendering: crispEdges;
-}
-
-.grid {
-  opacity: .5;
-
-  .tick line {
-    stroke: lightgrey;
-    shape-rendering: crispEdges;
+    cursor: crosshair;
+    pointer-events: all;
   }
 
-  .domain {
-    stroke: none;
-  }
-}
+  .axis {
+    opacity: 1;
 
-.line {
-  fill: none;
-
-  &.target {
-    stroke-dasharray: 10 5;
-    stroke: $target-color;
-    @at-root circle#{&} {
-      stroke-width: 2px;
-      stroke-dasharray: none;
+    line,
+    path {
+      stroke-dasharray: 0;
+      stroke: #000;
+      fill: none;
+      shape-rendering: crispEdges;
     }
   }
 
-  &.count {
-    stroke-width: 2px;
-    stroke: $count-color;
+  .highlight-coordinates {
+    stroke-dasharray: 10 5;
+    stroke: grey;
+    opacity: .5;
+    shape-rendering: crispEdges;
   }
-  @at-root circle#{&} {
+
+  .grid {
+    opacity: .5;
+
+    .tick line {
+      stroke: lightgrey;
+      shape-rendering: crispEdges;
+    }
+
+    .domain {
+      stroke: none;
+    }
+  }
+
+  .line {
+    &:not(circle) {
+      fill: none;
+    }
+
+    &.target {
+      stroke: $target-color;
+
+      &:not(circle) {
+        stroke-dasharray: 10 5;
+      }
+    }
+
+    &.count {
+      stroke-width: 2px;
+      stroke: $count-color;
+    }
+  }
+
+  .area {
+    opacity: .5;
+
+    &.target {
+      opacity: .3;
+      fill: $target-color;
+    }
+
+    &.count {
+      fill: $count-color;
+    }
+
+    &.danger {
+      fill: $danger-color;
+    }
+  }
+
+  circle {
+    stroke-width: 2px;
     fill: white;
   }
-}
 
-.area {
-  opacity: .6;
+  text {
+    font: 14px sans-serif;
 
-  &.target {
-    opacity: .3;
-    fill: $target-color;
-  }
+    &.target {
+      fill: $target-color;
+    }
 
-  &.count {
-    fill: $count-color;
-  }
-}
+    &.count {
+      fill: $count-color;
+    }
 
-text {
-  font: 14px sans-serif;
-
-  &.target {
-    fill: $target-color;
-  }
-
-  &.count {
-    fill: $count-color;
-  }
-
-  &.highlight-shadow {
-    stroke-width: 3px;
-    stroke: white;
-    opacity: .8;
+    &.highlight-shadow {
+      stroke-width: 3px;
+      stroke: white;
+      opacity: .8;
+    }
   }
 }
