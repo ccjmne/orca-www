@@ -7,7 +7,6 @@ const freezeDuration = 5000;
 document.querySelectorAll('.rotating-cards-container').forEach(container => anime({
   targets: container.querySelectorAll('.rotating-card'),
   keyframes: [{
-      translateX: ['50%', '0'],
       rotateY: ['90deg', '0'],
       opacity: [0, 1],
       easing: 'easeOutCubic',
@@ -15,7 +14,6 @@ document.querySelectorAll('.rotating-cards-container').forEach(container => anim
     },
     { duration: freezeDuration },
     {
-      translateX: ['0', '-50%'],
       rotateY: ['0', '-90deg'],
       opacity: [1, 0],
       easing: 'easeInBack',

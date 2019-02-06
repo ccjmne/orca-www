@@ -15,7 +15,13 @@
         <path d="M 0,.05 Q .50,-.05 1.00,.05 V .95 Q .50,1.05,0,.95 z"></path>
     </clipPath>
     <clipPath id="concave" clipPathUnits="objectBoundingBox">
-        <path d="M 0,0 Q .50,.10 1.00,0 V 1.00 Q .50,.90,0,1.00 z"></path>
+        <path d="M 0,0 Q .50,.15 1.00,0 V 1.00 Q .50,.85,0,1.00 z"></path>
+    </clipPath>
+    <clipPath id="concave-more" clipPathUnits="objectBoundingBox">
+        <path d="M 0,0 Q .50,.20 1.00,0 V 1.00 Q .50,.80,0,1.00 z"></path>
+    </clipPath>
+    <clipPath id="concave-most" clipPathUnits="objectBoundingBox">
+        <path d="M 0,0 Q .50,.25 1.00,0 V 1.00 Q .50,.75,0,1.00 z"></path>
     </clipPath>
     <clipPath id="wave-high" clipPathUnits="objectBoundingBox">
         <path

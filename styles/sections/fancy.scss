@@ -2,9 +2,16 @@
   background-image: linear-gradient(fade_out(darken($primary-color, 35%), .2), fade_out(darken($primary-color, 35%), .2)), url('./assets/fancy-section.jpg');
   background-size: cover;
   color: #fff;
-  clip-path: url('#wave');
+  clip-path: url('#arrow-down');
   @media ($bp-larger-than-phablet) {
     clip-path: url('#concave');
+  }
+
+  &.stripe {
+    clip-path: url('#concave-most');
+    @media ($bp-larger-than-phablet) {
+      clip-path: url('#concave-more');
+    }
   }
 
   h2 {
