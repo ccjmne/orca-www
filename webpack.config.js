@@ -1,10 +1,11 @@
 'use strict';
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const minify = {
   removeComments: true,
   removeCommentsFromCDATA: true,
@@ -68,14 +69,15 @@ module.exports = (env, argv) => ({
     }, {
       test: /\.(png|svg|jpe?g|gif|ico|webp)$/,
       use: [
-        { loader: 'url-loader' },
+        { loader: 'url-loader', options: { limit: 2048, outputPath: 'assets/' } },
         { loader: 'image-webpack-loader' }
       ]
     }]
   },
   plugins: [].concat(
-    (argv.mode === 'production' ? new CleanWebpackPlugin('dist') : []),
     (argv.mode === 'production' ? new BundleAnalyzerPlugin({ openAnalyzer: false }) : []),
+    argv.mode === 'production' ? new CleanWebpackPlugin('dist/**/*') : [],
+    new CopyWebpackPlugin([{ from: path.resolve(assets, 'favicons/'), to: 'favicons/' }]),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
@@ -86,13 +88,5 @@ module.exports = (env, argv) => ({
       chunksSortMode: 'manual',
       minify
     }),
-    (argv.mode === 'production' ? new FaviconsWebpackPlugin({
-      logo: path.resolve(assets, 'orca-splash.min.svg'),
-      prefix: 'favicons/',
-      persistentCache: true,
-      inject: true,
-      background: '#fff',
-      title: 'Orca — la sécurité au travail'
-    }) : [])
   )
 });
