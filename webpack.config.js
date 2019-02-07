@@ -76,9 +76,9 @@ module.exports = (env, argv) => ({
     }]
   },
   plugins: [].concat(
-    (argv.mode === 'production' ? new BundleAnalyzerPlugin({ openAnalyzer: false }) : []),
     argv.mode === 'production' ? new CleanWebpackPlugin('dist/**/*') : [],
     new CopyWebpackPlugin([{ from: path.resolve(assets, 'favicons/'), to: 'favicons/' }]),
+    argv.analyze ? new BundleAnalyzerPlugin() : [],
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
