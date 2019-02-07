@@ -4,6 +4,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const minify = {
@@ -88,5 +89,6 @@ module.exports = (env, argv) => ({
       chunksSortMode: 'manual',
       minify
     }),
+    argv.mode === 'production' ? new ImageminPlugin() : []
   )
 });
