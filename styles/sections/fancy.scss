@@ -8,10 +8,19 @@
   }
 
   &.stripe {
-    clip-path: url('#concave-most');
-    @media ($bp-larger-than-phablet) {
-      clip-path: url('#concave-more');
-    }
+    clip-path: url('#cut-topright-bottomleft');
+  }
+
+  &.anchors {
+    background-color: black;
+    background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2) 0%, fade_out(darken($primary-color, 35%), .2) 45%, fade_out(darken($primary-color, 99%), .2)), url('./assets/anchors.svg');
+    background-size: auto;
+  }
+
+  &.circuit-board {
+    background-color: black;
+    background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2) 0%, fade_out(darken($primary-color, 35%), .2) 45%, fade_out(darken($primary-color, 99%), .2)), url('./assets/circuit-board.svg');
+    background-size: auto;
   }
 
   h2 {
