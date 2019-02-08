@@ -1,0 +1,38 @@
+.section.footer {
+  clip-path: url('#cut-topleft');
+
+  orca-logo {
+    max-width: 80%;
+    @media($bp-larger-than-tablet) {
+      & {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-row-gap: 4%;
+    grid-template-rows: 1fr 1fr 1fr;
+    @media($bp-larger-than-tablet) {
+      grid-column-gap: 4%;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+  }
+
+  .footer-cell {
+    @include center-content;
+    flex-direction: column;
+    white-space: nowrap;
+    @media($bp-larger-than-tablet) {
+      text-align: left;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+      color: #ccc;
+    }
+  }
+}
