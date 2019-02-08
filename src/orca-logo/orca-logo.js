@@ -7,7 +7,7 @@ const svgns = 'http://www.w3.org/2000/svg';
 class OrcaLogo extends HTMLElement {
 
   static get observedAttributes() {
-    return ['animated'];
+    return ['animated', 'white'];
   }
 
   constructor() {
