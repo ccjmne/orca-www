@@ -7,7 +7,7 @@ const svgns = 'http://www.w3.org/2000/svg';
 class OrcaLogo extends HTMLElement {
 
   static get observedAttributes() {
-    return ['animated', 'white'];
+    return ['animated'];
   }
 
   constructor() {
@@ -46,6 +46,8 @@ class OrcaLogo extends HTMLElement {
       anime({ targets: this.circles, ...defaults, translateX: c => c.pathExtractor('x'), translateY: c => c.pathExtractor('y') })
         .finished.then(() => anime({ targets: this.strokes, 'stroke-opacity': '0', duration: 1000, easing })).then(() => this.shine());
       anime({ targets: this.fills, 'fill-opacity': [0, 1], easing, duration, delay: duration });
+    } else {
+      this.strokes.forEach(s => s.style.stroke = 'none');
     }
   }
 
