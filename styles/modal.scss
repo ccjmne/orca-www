@@ -1,0 +1,125 @@
+.modal__overlay {
+  @include center-content;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  perspective: 4000px;
+  background-color: rgba(0, 0, 0, .6);
+  will-change: transform;
+}
+
+.modal__container {
+  @include card;
+  box-sizing: border-box;
+  max-width: 500px;
+  overflow-y: auto;
+  background-color: #fff;
+  will-change: transform;
+
+  .button {
+    margin: 0;
+  }
+
+  > * {
+    padding: 0 3rem;
+  }
+
+  > :last-child,
+  > :first-child {
+    padding: 2rem 3rem;
+  }
+}
+
+.modal__title {
+  box-sizing: border-box;
+  margin: 0;
+  color: $primary-color;
+}
+
+.modal__content {
+  max-height: 50vh;
+  overflow-y: auto;
+  background: linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background: linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+@keyframes flyIn {
+  0% {
+    transform: translateY(-50%) rotateX(90deg);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateY(10px) rotateX(-5deg);
+  }
+
+  100% {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+@keyframes flyOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  20% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(.5);
+    opacity: 0;
+  }
+}
+
+.modal {
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+
+  &[aria-hidden="false"] {
+    .modal__overlay {
+      animation: fadeIn .5s ease-in-out;
+    }
+
+    .modal__container {
+      animation: flyIn .5s ease-in-out;
+    }
+  }
+
+  &[aria-hidden="true"] {
+    .modal__overlay {
+      animation: fadeOut .5s ease-in-out;
+    }
+
+    .modal__container {
+      animation: flyOut .5s ease-in-out;
+    }
+  }
+}
