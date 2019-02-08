@@ -1,0 +1,8 @@
+a.button.button-primary {
+  background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 35%), .2));
+
+  &:active,
+  &:hover {
+    background-color: black;
+  }
+}
