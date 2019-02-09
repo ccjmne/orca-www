@@ -4,6 +4,7 @@ export class Interval {
   }
 
   do(task) {
+    this.stoppped = this.lastTrigger = undefined;
     this.task = task;
     window.requestAnimationFrame(this._doLater.bind(this));
     return this;
