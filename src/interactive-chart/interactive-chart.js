@@ -1,7 +1,7 @@
 'use strict';
 // jshint camelcase: false
 
-import { Interval } from '../interval';
+import { Interval } from '../utils';
 
 import { bisector, extent, max } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
@@ -99,7 +99,9 @@ class InteractiveChart {
       self.mouseX = null;
     }).on('mousemove', function () {
       [self.mouseX, ] = mouse(this);
-      self.updateHighlight();
+      if (self.cert) { // some data is displayed
+        self.updateHighlight();
+      }
     });
   }
 

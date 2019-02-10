@@ -1,6 +1,6 @@
 'use strict';
 
-import { Interval } from './interval';
+import { Interval } from './utils';
 
 function animate(e) {
   e.style.visibility = 'visible';

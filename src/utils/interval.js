@@ -1,21 +1,25 @@
-export class Interval {
+export default class Interval {
   constructor(interval) {
     this.interval = interval || 3000;
   }
 
   do(task) {
-    this.stoppped = this.lastTrigger = undefined;
+    this._running = !(this.lastTrigger = undefined);
     this.task = task;
     window.requestAnimationFrame(this._doLater.bind(this));
     return this;
   }
 
   stop() {
-    this.stoppped = true;
+    this._running = false;
+  }
+
+  isRunning() {
+    return !!this._running;
   }
 
   _doLater(timestamp) {
-    if (this.stoppped) {
+    if (!this.isRunning()) {
       return;
     }
 
