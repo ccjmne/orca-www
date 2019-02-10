@@ -12,6 +12,8 @@ import { timeFormat } from 'd3-time-format';
 import 'd3-transition';
 import './d3-fr';
 
+import './interactive-chart.scss';
+
 const certificates = require('./certificates.sample.json');
 const ordered = Object.assign(Object.values(certificates).sort(({ cert_order: a }, { cert_order: b }) => a - b).map(({ cert_pk }) => cert_pk), { cur: 0 });
 const data = (scale => require('./stats.sample.min.json').map((data, idx) => ({
