@@ -1,14 +1,18 @@
 'use strict';
 
-import scrollReveal from 'scrollreveal';
+import { Interval } from './interval';
 
-const { reveal } = scrollReveal({
-  duration: 500,
-  distance: '20px',
-  easing: 'ease-out',
-  scale: .95,
-  viewFactor: .3
-});
+function animate(e) {
+  e.style.visibility = 'visible';
+  return e.animate({ transform: ['translateY(20px) scale(.9)', 'translateY(0) scale(1)'], opacity: [0, 1] }, { duration: 500, easing: 'ease-out' });
+}
 
-reveal('[reveal]', { mobile: false, desktop: true, interval: 200, origin: 'bottom' });
-reveal('[reveal]', { mobile: true, desktop: false, interval: 200, origin: 'right' });
+const ival = new Interval(200);
+const stack = [];
+(observer => document.querySelectorAll('[reveal]').forEach(e => observer.observe(e)))(new IntersectionObserver((entries, obs) => entries.forEach(({ isIntersecting: reveal, target }) => {
+  if (reveal) {
+    obs.unobserve(target);
+    stack.push(target);
+    ival.do(() => (e => e ? animate(e) : ival.stop())(stack.shift()));
+  }
+}), { rootMargin: '0px', threshold: 0.15 }));
