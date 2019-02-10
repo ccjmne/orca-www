@@ -1,6 +1,7 @@
 'use strict';
 
 import anime from 'animejs';
+import { OnScreen } from '../utils';
 
 const svgns = 'http://www.w3.org/2000/svg';
 
@@ -40,15 +41,24 @@ class OrcaLogo extends HTMLElement {
     this.addEventListener('touchstart', this.shine, { passive: true });
 
     if (this.animated) {
-      const duration = 2000;
-      const easing = 'easeInOutQuad';
-      const defaults = { delay: e => e.getAttribute('delay'), duration: e => duration - parseInt(e.getAttribute('delay')) + 1000, easing };
-      anime({ targets: this.strokes, ...defaults, strokeDashoffset: [anime.setDashoffset, 0] });
-      anime({ targets: this.circles, ...defaults, r: c => [0, c.getAttribute('radius')], duration: 500 })
-        .finished.then(() => anime({ targets: this.circles, r: c => [c.getAttribute('radius'), 0], easing, duration: 500, delay: 300 }));
-      anime({ targets: this.circles, ...defaults, translateX: c => c.pathExtractor('x'), translateY: c => c.pathExtractor('y') })
-        .finished.then(() => anime({ targets: this.strokes, 'stroke-opacity': '0', duration: 1000, easing })).then(() => this.shine());
-      anime({ targets: this.fills, 'fill-opacity': [0, 1], easing, duration, delay: duration });
+      this.style.visibility = 'hidden';
+      new OnScreen(this, {
+        once: true,
+        enter: () => {
+          this.style.visibility = 'visible';
+          this.strokes.forEach(s => s.style['stroke-opacity'] = 1);
+          const duration = 2000;
+          const easing = 'easeInOutQuad';
+          const defaults = { delay: e => e.getAttribute('delay'), duration: e => duration - parseInt(e.getAttribute('delay')) + 1000, easing };
+          // TODO: use anime timeline
+          anime({ targets: this.strokes, ...defaults, strokeDashoffset: [anime.setDashoffset, 0] });
+          anime({ targets: this.circles, ...defaults, r: c => [0, c.getAttribute('radius')], duration: 500 })
+            .finished.then(() => anime({ targets: this.circles, r: c => [c.getAttribute('radius'), 0], easing, duration: 500, delay: 300 }));
+          anime({ targets: this.circles, ...defaults, translateX: c => c.pathExtractor('x'), translateY: c => c.pathExtractor('y') })
+            .finished.then(() => anime({ targets: this.strokes, 'stroke-opacity': 0, duration: 1000, easing })).then(() => this.shine());
+          anime({ targets: this.fills, 'fill-opacity': [0, 1], easing, duration, delay: duration });
+        }
+      });
     } else {
       this.strokes.forEach(s => s.style.stroke = 'none');
     }
