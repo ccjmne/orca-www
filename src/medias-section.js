@@ -1,7 +1,7 @@
 'use strict';
 
 import anime from 'animejs';
-import { OnScreen } from './utils';
+import { Interval, OnScreen } from './utils';
 
 // rotating cards
 document.querySelectorAll('.rotating-cards-container').forEach(container => {
@@ -25,3 +25,17 @@ const [morph, pdf, dimensions, orientation] = [500, document.querySelector('#pdf
   .add({ width: px(297), height: px(210), changeBegin: () => anime({ targets: dimensions, opacity: [0, 1], duration: morph, easing: 'linear', begin: () => dimensions.textContent = 'A4' }) })
   .add({ width: px(210), height: px(297), changeBegin: () => anime({ targets: orientation, opacity: [0, 1], duration: morph, easing: 'linear', begin: () => (pdf.classList.remove('landscape'), orientation.textContent = 'portrait') }) })
 );
+
+const chartSelector = 'svg#interactive-chart';
+new OnScreen(chartSelector, {
+  once: true,
+  threshold: 0,
+  margin: '500px',
+  enter: async function () {
+    const { InteractiveChart } = await import( /* webpackChunkName: 'interactive-chart' */ './interactive-chart/interactive-chart');
+    (([chart, interval]) => new OnScreen(chartSelector, {
+      enter: () => interval.do(() => chart.displayNext()),
+      leave: () => interval.stop()
+    }))([new InteractiveChart(chartSelector), new Interval(4000)]);
+  }
+});

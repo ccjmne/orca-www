@@ -1,6 +1,6 @@
 'use strict';
 
-import { Interval, OnScreen } from './utils';
+import { OnScreen } from './utils';
 
 new OnScreen('[reveal]', {
   once: true,
@@ -16,18 +16,4 @@ new OnScreen('img[data-src]:not([src])', {
   margin: '500px',
   stagger: 0,
   enter: i => i.src = i.getAttribute('data-src')
-});
-
-const chartSelector = 'svg#interactive-chart';
-new OnScreen(chartSelector, {
-  once: true,
-  threshold: 0,
-  margin: '500px',
-  enter: async function () {
-    const { InteractiveChart } = await import( /* webpackChunkName: 'interactive-chart' */ './interactive-chart/interactive-chart');
-    (([chart, interval]) => new OnScreen(chartSelector, {
-      enter: () => interval.do(() => chart.displayNext()),
-      leave: () => interval.stop()
-    }))([new InteractiveChart(chartSelector), new Interval(4000)]);
-  }
 });
