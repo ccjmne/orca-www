@@ -1,6 +1,6 @@
 export default class Interval {
-  constructor(interval) {
-    this.interval = interval || 3000;
+  constructor(interval = 3000) {
+    this.interval = interval || 1;
   }
 
   do(task) {

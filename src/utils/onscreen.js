@@ -1,7 +1,7 @@
 import Interval from './interval';
 
 class OnScreen {
-  constructor(selector, { once = false, enter, leave, threshold = .15, stagger = 200 }) {
+  constructor(selector, { once = false, enter, leave, threshold = .15, stagger = 200, margin: rootMargin = '0px' }) {
     this.staggerIn = new Interval(stagger);
     this.staggerOut = new Interval(stagger);
     this.stackIn = [];
@@ -22,7 +22,7 @@ class OnScreen {
           if (!this.staggerOut.isRunning()) { this.staggerOut.do(() => (e => e ? leave(e) : this.staggerOut.stop())(this.stackOut.shift())); }
         }
       }
-    }), { rootMargin: '0px', threshold }));
+    }), { rootMargin, threshold }));
   }
 
   static _getElements(selector) {
