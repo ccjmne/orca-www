@@ -57,7 +57,7 @@ module.exports = (env, argv) => ({
       test: /\.html$/,
       use: [{
         loader: 'html-loader',
-        options: { interpolate: true, minify }
+        options: { attrs: ['img:src', 'img:data-src'], interpolate: true, minify }
       }]
     }, {
       test: /\.s?css$/,
