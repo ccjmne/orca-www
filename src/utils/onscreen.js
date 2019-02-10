@@ -7,19 +7,19 @@ class OnScreen {
     this.stackIn = [];
     this.stackOut = [];
 
-    (observer => OnScreen._getElements(selector).forEach(e => observer.observe(e)))(new IntersectionObserver((entries, obs) => entries.forEach(({ isIntersecting: reveal, target }) => {
-      if (reveal) {
+    (observer => OnScreen._getElements(selector).forEach(e => observer.observe(e)))(new IntersectionObserver((entries, obs) => entries.forEach(({ isIntersecting, intersectionRatio, target }) => {
+      if (isIntersecting && intersectionRatio >= threshold) {
         target.__onScreen = true;
         if (once) { obs.unobserve(target); }
         if (typeof enter === 'function') {
           this.stackIn.push(target);
-          if (!this.staggerIn.running) { this.staggerIn.do(() => (e => e ? enter(e) : this.staggerIn.stop())(this.stackIn.shift())); }
+          if (!this.staggerIn.isRunning()) { this.staggerIn.do(() => (e => e ? enter(e) : this.staggerIn.stop())(this.stackIn.shift())); }
         }
       } else if (target.__onScreen) {
         target.__onScreen = false;
         if (typeof leave === 'function') {
           this.stackOut.push(target);
-          if (!this.staggerOut.running) { this.staggerOut.do(() => (e => e ? leave(e) : this.staggerOut.stop())(this.stackOut.shift())); }
+          if (!this.staggerOut.isRunning()) { this.staggerOut.do(() => (e => e ? leave(e) : this.staggerOut.stop())(this.stackOut.shift())); }
         }
       }
     }), { rootMargin: '0px', threshold }));
