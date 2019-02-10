@@ -38,9 +38,9 @@ module.exports = (env, argv) => ({
     splitChunks: {
       cacheGroups: {
         vendors: {
-          name: 'vendors',
+          name: 'commons',
           chunks: 'initial',
-          test: /animejs/
+          test: /animejs|[/\\]src[/\\]utils/
         }
       }
     }
@@ -91,7 +91,7 @@ module.exports = (env, argv) => ({
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
-      chunks: ['vendors', 'logo', 'main', 'reveal'],
+      chunks: ['commons', 'logo', 'main', 'reveal'],
       chunksSortMode: 'manual',
       minify
     }),
