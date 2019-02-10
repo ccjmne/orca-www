@@ -7,7 +7,7 @@ class OnScreen {
     this.stackIn = [];
     this.stackOut = [];
 
-    (observer => document.querySelectorAll(selector).forEach(e => observer.observe(e)))(new IntersectionObserver((entries, obs) => entries.forEach(({ isIntersecting: reveal, target }) => {
+    (observer => OnScreen._getElements(selector).forEach(e => observer.observe(e)))(new IntersectionObserver((entries, obs) => entries.forEach(({ isIntersecting: reveal, target }) => {
       if (reveal) {
         target.__onScreen = true;
         if (once) { obs.unobserve(target); }
@@ -23,6 +23,18 @@ class OnScreen {
         }
       }
     }), { rootMargin: '0px', threshold }));
+  }
+
+  static _getElements(selector) {
+    if (selector instanceof Array) {
+      return [].concat(...selector.map(s => OnScreen._getElements(s)));
+    }
+
+    if (selector instanceof Element) {
+      return [selector];
+    }
+
+    return document.querySelectorAll(selector);
   }
 }
 
