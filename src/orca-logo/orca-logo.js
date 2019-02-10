@@ -33,8 +33,8 @@ class OrcaLogo extends HTMLElement {
 
   // lifecycle hooks
   connectedCallback() {
-    this.addEventListener('mouseenter', this.shine);
-    this.addEventListener('touchstart', this.shine);
+    this.addEventListener('mouseenter', this.shine, { passive: true });
+    this.addEventListener('touchstart', this.shine, { passive: true });
 
     if (this.animated) {
       const duration = 2000;
