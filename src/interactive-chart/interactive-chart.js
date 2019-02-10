@@ -12,6 +12,7 @@ import { mouse, select } from 'd3-selection';
 import { area, line, curveMonotoneX as curve } from 'd3-shape';
 import { timeFormat } from 'd3-time-format';
 import 'd3-transition';
+import './d3-fr';
 
 const certificates = Object.values(require('./certificates.sample.json')).sort(({ cert_order: a }, { cert_order: b }) => a - b);
 const data = (scale => require('./stats.sample.min.json').map((data, idx) => ({
