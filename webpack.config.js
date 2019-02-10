@@ -68,10 +68,16 @@ module.exports = (env, argv) => ({
         { loader: '@epegzz/sass-vars-loader', options: { syntax: 'scss', files: [path.resolve(__dirname, 'styles/variables.js')] } }
       ]
     }, {
-      test: /\.(png|svg|jpe?g|gif|ico|webp)$/,
+      test: /\.(png|jpe?g|gif|ico)$/,
       use: [
-        { loader: 'url-loader', options: { limit: 2048, outputPath: 'assets/' } },
-        { loader: 'image-webpack-loader' }
+        { loader: 'image-webpack-loader' },
+        { loader: 'url-loader', options: { limit: 2048, outputPath: 'assets/' } }
+      ]
+    }, {
+      test: /\.(svg)$/,
+      use: [
+        { loader: 'image-webpack-loader' },
+        { loader: 'svg-url-loader', options: { limit: 4096 } }
       ]
     }]
   },
