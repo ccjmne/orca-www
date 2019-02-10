@@ -13,6 +13,9 @@ class OrcaLogo extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = require('./orca-logo.html');
+    // Generate unique clipPath ids for each orca-logo instance
+    const clips = [].map.call(this.querySelectorAll('clipPath[data-clip]'), clip => (clip.id = OrcaLogo._generateUUID(), clip)).reduce((acc, clip) => (acc[clip.getAttribute('data-clip')] = clip.id, acc), {});
+    this.querySelectorAll('[data-clip-path]').forEach(path => path.setAttributeNS(null, 'clip-path', `url(#${ clips[path.getAttribute('data-clip-path')] })`));
     this.strokes = this.querySelectorAll('path[animate-stroke]');
     this.fills = this.querySelectorAll('path[animate-fill]');
     this.reflection = this.querySelector('rect.shine');
@@ -53,6 +56,10 @@ class OrcaLogo extends HTMLElement {
 
   get animated() {
     return this.getAttribute('animated') !== null && this.getAttribute('animated') !== 'false';
+  }
+
+  static _generateUUID() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ window.crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
   }
 }
 
