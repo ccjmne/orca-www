@@ -47,6 +47,11 @@ module.exports = (env, argv) => ({
   },
   module: {
     rules: [{
+      test: /\.ttf$/,
+      use: [
+        { loader: 'file-loader' }
+      ]
+    }, {
       test: /\.js$/,
       exclude: /node_modules/,
       use: [{
