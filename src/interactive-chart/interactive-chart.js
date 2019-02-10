@@ -1,8 +1,6 @@
 'use strict';
 // jshint camelcase: false
 
-import { Interval, OnScreen } from '../utils';
-
 import { bisector, extent, max } from 'd3-array';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { easeCubicInOut as easing } from 'd3-ease';
@@ -14,7 +12,8 @@ import { timeFormat } from 'd3-time-format';
 import 'd3-transition';
 import './d3-fr';
 
-const certificates = Object.values(require('./certificates.sample.json')).sort(({ cert_order: a }, { cert_order: b }) => a - b);
+const certificates = require('./certificates.sample.json');
+const ordered = Object.assign(Object.values(certificates).sort(({ cert_order: a }, { cert_order: b }) => a - b).map(({ cert_pk }) => cert_pk), { cur: 0 });
 const data = (scale => require('./stats.sample.min.json').map((data, idx) => ({
   date: scale.invert(idx),
   stats: data.reduce((acc, [current, target], idx) => (acc[idx + 1] = { current: current + Math.floor(Math.random() * target / 8), target }, acc), {})
@@ -127,8 +126,12 @@ class InteractiveChart {
     transition(this.crosshairs.ticks).select('text').text(timeFormat('%d %b %Y')(date));
   }
 
-  displayData({ cert_pk: key }, duration = 1000) {
-    this.cert = certificates.find(c => c.cert_pk === key);
+  displayNext() {
+    this.displayData(ordered[ordered.cur++ % ordered.length]);
+  }
+
+  displayData(key, duration = 1000) {
+    this.cert = certificates[key];
     this.data = data.map(({ date, stats }) => ({ date: new Date(date), count: stats[key].current, target: stats[key].target }));
     this.legend.transition().duration(duration / 2).style('opacity', 0).transition().duration(duration / 2).text(this.cert.cert_short).style('opacity', 1);
 
@@ -200,10 +203,4 @@ class InteractiveChart {
   }
 }
 
-const chart = new InteractiveChart('svg#interactive-chart');
-let idx = -1;
-const interval = new Interval(4000);
-new OnScreen('svg#interactive-chart', {
-  enter: () => interval.do(() => chart.displayData(certificates[idx = (idx + 1) % certificates.length])),
-  leave: () => interval.stop()
-});
+export { InteractiveChart };
