@@ -9,8 +9,7 @@ document.querySelectorAll('.rotating-cards-container').forEach(container => {
   const loop = anime.timeline({ targets: container.querySelectorAll('.rotating-card'), loop: true, delay: anime.stagger(scan + 2 * flip), autoplay: false })
     .add({ keyframes: [{ rotateY: ['90deg', '0'], opacity: [0, 1], easing: 'easeOutCubic', duration: flip }, { duration: scan }, { rotateY: ['0', '-90deg'], opacity: [1, 0], easing: 'easeInBack', duration: flip }] });
   if (container.matches('.scanning-cards-container')) {
-    const [, maxHeight] = /^(\d+)px$/.exec(window.getComputedStyle(container.querySelector('.rotating-card.scanning-card')).maxHeight);
-    loop.add({ targets: container.querySelectorAll('.rotating-card.scanning-card > img'), keyframes: [{}, { top: ({ height }) => [0, `-${ height - parseInt(maxHeight) }px`] }, {}], easing: 'easeInOutCubic', duration: scan }, flip);
+    loop.add({ targets: container.querySelectorAll('.rotating-card.scanning-card > img'), keyframes: [{}, { top: [0, '100%'], translateY: [0, '-100%'] }, {}], easing: 'easeInOutCubic', duration: scan }, flip);
   }
 
   new OnScreen(container, { enter: loop.play, leave: loop.pause });
