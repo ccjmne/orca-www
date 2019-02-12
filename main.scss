@@ -7,12 +7,46 @@
 @import './styles/components/card';
 @import './styles/modal';
 
+body,
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
+  perspective: 600px;
+  background-color: black;
+  background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 35%), .2) 45%, black), url('./assets/anchors.svg');
+  background-size: auto;
+}
+
+.main-wrapper {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  transform-origin: 0 50%;
+  transform-style: preserve-3d;
   background-image: url('./assets/background.svg');
   background-size: cover;
   background-attachment: fixed;
+
+  .main {
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+      background-color: black;
+      pointer-events: none;
+    }
+  }
 }
 
 [reveal] {
   visibility: hidden;
+  will-change: visibility transform;
 }

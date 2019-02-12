@@ -1,0 +1,25 @@
+'use strict';
+
+import MicroModal from 'micromodal';
+import anime from 'animejs';
+
+const [wrapper, overlay, modals] = [document.querySelector('.main-wrapper'), document.querySelector('.main > .overlay'), document.querySelector('.modals-container')];
+document.querySelectorAll('[data-modal-trigger]').forEach(trigger => trigger.addEventListener('click', async function () {
+  const modalId = this.getAttribute('data-modal-trigger');
+  if (!modals.querySelector(`#${ modalId }`)) {
+    const { 'default': modal } = await import( /* webpackChunkName: '[request]' */ `./${ modalId }.html`);
+    modals.insertAdjacentHTML('beforeend', modal);
+  }
+
+  MicroModal.show(modalId, {
+    awaitCloseAnimation: true,
+    onShow: () => anime.timeline({
+      targets: wrapper,
+      keyframes: [{ easing: 'easeInCirc', translateZ: -50, rotateY: '5deg' }, { easing: 'easeOutBack', translateZ: -200, rotateY: 0 }]
+    }).add({ targets: overlay, opacity: .6, easing: 'easeInQuad' }, 0),
+    onClose: () => anime.timeline({
+      targets: wrapper,
+      keyframes: [{ easing: 'easeInCirc', translateZ: -50, rotateY: '5deg' }, { easing: 'easeOutBack', translateZ: 0, rotateY: 0 }]
+    }).add({ targets: overlay, opacity: 0, easing: 'easeInQuad' }, 0)
+  });
+}));
