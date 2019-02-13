@@ -50,3 +50,7 @@ body {
   visibility: hidden;
   will-change: visibility transform;
 }
+
+a {
+  white-space: nowrap;
+}
