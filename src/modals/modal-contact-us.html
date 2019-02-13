@@ -1,0 +1,27 @@
+<div class="modal" id="modal-contact-us" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <form class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-contact-us-title">
+            <header class="modal__header">
+                <h3 class="modal__title" id="modal-contact-us-title">Contactez-nous</h3>
+                <p>Utilisez le formulaire suivant ou écrivez-nous directement à <a href="mailto:infos@orca-solution.com">infos@orca-solution.com</a></p>
+            </header>
+            <main class="modal__content" id="modal-contact-us-content">
+                <label for="name">Nom</label>
+                <input class="u-full-width" type="text" id="name" name="name" placeholder="Votre nom" required>
+
+                <label for="company">Organisation</label>
+                <input class="u-full-width" type="text" id="company" name="company" placeholder="Votre organisation" required>
+
+                <label for="email">Adresse courriel</label>
+                <input class="u-full-width" type="email" id="email" name="email" placeholder="Votre adresse courriel" required>
+
+                <label for="message">Message</label>
+                <textarea class="u-full-width" id="message" name="message" placeholder="Votre message" style="height:200px" required></textarea>
+            </main>
+            <footer class="modal__footer">
+                <a class="button" href="javascript:void(0)" data-micromodal-close aria-label="Fermer cette fenêtre">Annuler</a>
+                <input class="button button-primary" type="submit" aria-label="Envoyer" value="Envoyer">
+            </footer>
+        </form>
+    </div>
+</div>
