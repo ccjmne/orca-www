@@ -7,7 +7,7 @@ const [wrapper, overlay, modals] = [document.querySelector('.main-wrapper'), doc
 document.querySelectorAll('[data-modal-trigger]').forEach(trigger => trigger.addEventListener('click', async function () {
   const modalId = this.getAttribute('data-modal-trigger');
   if (!modals.querySelector(`#${ modalId }`)) {
-    const { 'default': modal } = await import( /* webpackChunkName: '[request]' */ `./${ modalId }.html`);
+    const { 'default': modal } = await import( /* webpackChunkName: 'modals/[request]' */ `./${ modalId }.html`);
     modals.insertAdjacentHTML('beforeend', modal);
   }
 
