@@ -29,8 +29,7 @@ const path = require('path'),
 module.exports = (env, argv) => ({
   entry: {
     main: path.resolve(__dirname, 'index.js'),
-    logo: path.resolve(src, 'orca-logo/orca-logo.js'),
-    reveal: path.resolve(src, 'reveal.js')
+    logo: path.resolve(src, 'orca-logo/orca-logo.js')
   },
   devtool: (argv.mode === 'production' ? '' : 'cheap-module-eval-source-map'),
   optimization: {
@@ -101,7 +100,7 @@ module.exports = (env, argv) => ({
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
-      chunks: ['commons', 'logo', 'main', 'reveal'],
+      chunks: ['commons', 'main', 'logo'],
       chunksSortMode: 'manual',
       minify
     }),
