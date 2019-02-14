@@ -6,7 +6,7 @@
   "scripts": {
     "analyze": "webpack --mode production --analyze",
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --mode development --content-base dist --port 8001",
+    "dev": "webpack-dev-server --mode development --content-base dist --port 8001 --history-api-fallback",
     "start": "npm run dev"
   },
   "repository": {
