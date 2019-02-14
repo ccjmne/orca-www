@@ -26,8 +26,8 @@ class OnScreen {
   }
 
   static _getElements(selector) {
-    if (selector instanceof Array) {
-      return [].concat(...selector.map(s => OnScreen._getElements(s)));
+    if (selector instanceof Array || selector instanceof NodeList) {
+      return [].concat(...[].map.call(selector, s => OnScreen._getElements(s)));
     }
 
     if (selector instanceof Element) {
