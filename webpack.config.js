@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const minify = {
   removeComments: true,
@@ -104,6 +105,7 @@ module.exports = (env, argv) => ({
       chunksSortMode: 'manual',
       minify
     }),
+    new ScriptExtHtmlWebpackPlugin({ defaultAttribute: 'defer' }),
     argv.mode === 'production' ? new ImageminPlugin() : []
   )
 });
