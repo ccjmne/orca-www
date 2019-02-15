@@ -5,7 +5,7 @@ import './pushstate-anchor';
 export class Router {
   constructor(selector) {
     this.root = document.querySelector(selector);
-    window.addEventListener('popstate', () => this._loadPage());
+    window.addEventListener('popstate', () => this._loadPage(), { passive: true, useCapture: false });
     this._loadPage();
   }
 

@@ -15,11 +15,11 @@ document.querySelectorAll('[data-modal-trigger]').forEach(trigger => trigger.add
     awaitCloseAnimation: true,
     onShow: () => anime.timeline({
       targets: wrapper,
-      keyframes: [{ easing: 'easeInCirc', translateZ: -50, rotateY: '5deg' }, { easing: 'easeOutBack', translateZ: -200, rotateY: 0 }]
-    }).add({ targets: overlay, opacity: .6, easing: 'easeInQuad' }, 0),
+      keyframes: [{ easing: 'easeInExpo', translateZ: -50, rotateY: '5deg' }, { easing: 'easeOutBack', translateZ: -200, rotateY: 0 }]
+    }).add({ targets: overlay, opacity: .6, easing: 'easeInOutExpo' }, 0),
     onClose: () => anime.timeline({
       targets: wrapper,
-      keyframes: [{ easing: 'easeInCirc', translateZ: -50, rotateY: '5deg' }, { easing: 'easeOutBack', translateZ: 0, rotateY: 0 }]
-    }).add({ targets: overlay, opacity: 0, easing: 'easeInQuad' }, 0)
+      keyframes: [{ easing: 'easeInExpo', translateZ: -50, rotateY: '5deg' }, { easing: 'easeOutBack', translateZ: 0, rotateY: 0 }]
+    }).add({ targets: overlay, opacity: 0, easing: 'easeInOutExpo' }, 0)
   });
-}));
+}, { passive: true, useCapture: false }));
