@@ -1,5 +1,5 @@
 $link-color: darken(saturate($primary-color, 50%), 10%) !default;
-$font-family: 'Montserrat-swap', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family: 'Montserrat', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 orca-logo {
   --primary-color: #{$primary-color};
@@ -10,24 +10,5 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Raleway-swap', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-@font-face {
-  font-family: 'Raleway-swap';
-  font-weight: 300;
-  src: local('Raleway'), url('./assets/fonts/Raleway/Raleway-Light.ttf') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat-swap';
-  font-weight: 400;
-  src: local('Montserrat'), url('./assets/fonts/Montserrat/Montserrat-Regular.ttf') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat-swap';
-  font-weight: 300;
-  src: local('Montserrat'), url('./assets/fonts/Montserrat/Montserrat-Light.ttf') format('woff2');
-  font-display: swap;
+  font-family: 'Raleway', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
