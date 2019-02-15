@@ -1,0 +1,45 @@
+.menu-toggle {
+  display: block;
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border: 2px solid darken(white, 10%);
+  border-top: 0;
+  border-left: 0;
+  border-bottom-right-radius: 100%;
+  background-color: black;
+  background-image: linear-gradient(black, fade_out(darken($primary-color, 35%), .2) 45%, fade_out(darken($primary-color, 20%), .2));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+  cursor: pointer;
+}
+
+.menu-items {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 2rem;
+
+  a {
+    display: block;
+    margin: 2rem;
+    transition: color .2s;
+    color: darken(white, 30%);
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.vertical-padding {
+  display: none;
+  height: 2000px;
+  margin-top: -1px;
+  background-color: black;
+}
