@@ -18,6 +18,14 @@ export class Menu {
     overlay.addEventListener('click', () => this.close(), { passive: true, useCapture: false });
   }
 
+  show() {
+    anime({ targets: toggle, scale: 1, easing: 'easeOutBack', duration: 250 });
+  }
+
+  hide() {
+    anime({ targets: toggle, scale: 0, easing: 'easeInBack', duration: 500 });
+  }
+
   open() {
     this.isOpen = true;
     anime.timeline({ targets: main, rotate: '-30deg', duration: 500, easing: 'easeInOutExpo', begin: () => (main.style.height = '200%', padding.style.display = 'block') })
@@ -40,13 +48,17 @@ export class Menu {
 
   set isOpen(value) {
     const { offsetHeight, scrollHeight } = main;
-    main[this._isOpen = value ? 'addEventListener' : 'removeEventListener']('scroll', function asdf({ target: { scrollTop } })  {
-      if (scrollTop > scrollHeight - offsetHeight + 2) { // 2px for border-top and bottom
-        main.scrollTop = scrollHeight - offsetHeight + 2;
-      }
-    }, { passive: true, useCapture: false });
     document.body.classList[value ? 'add' : 'remove']('menu-open');
     hamburger.classList[value ? 'add' : 'remove']('is-active');
+    if ((this._isOpen = value)) {
+      return main.addEventListener('scroll', this.listener = function ({ target: { scrollTop } }) {
+        if (scrollTop > scrollHeight - offsetHeight + 2) { // 2px for border-top and bottom
+          main.scrollTop = scrollHeight - offsetHeight + 2;
+        }
+      }, { passive: true, useCapture: false });
+    }
+
+    main.removeEventListener('scroll', this.listener, { passive: true, useCapture: false });
   }
 }
 
