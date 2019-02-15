@@ -1,6 +1,7 @@
 'use strict';
 
 import './pushstate-anchor';
+import { menu } from '../menu';
 
 export class Router {
   constructor(selector) {
@@ -17,6 +18,7 @@ export class Router {
   async _loadPage() {
     const { html, hook: pageHook } = await import( /* webpackChunkName: 'partials/[request]' */ `../views/${ window.location.pathname.substr(1) || 'home' }.js`);
     this.root.innerHTML = html;
+    menu.close();
     if (typeof pageHook === 'function') {
       pageHook(this.root);
     }
