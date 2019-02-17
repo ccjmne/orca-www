@@ -1,0 +1,79 @@
+.faq-container {
+  display: grid;
+  grid-row-gap: 5rem;
+  grid-template-columns: 'left' 1fr;
+  @media($bp-larger-than-desktop) {
+    grid-column-gap: 4%;
+    grid-template: 'left right' / 1fr 1fr;
+  }
+
+  .faq-entry {
+    @include center-content;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2rem 2rem 0;
+    background-color: white;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+
+    &:not(.open) {
+      cursor: pointer;
+
+      .collapsible {
+        opacity: 0;
+      }
+
+      .collapser::before {
+        content: '▼';
+      }
+
+      &:hover .collapser {
+        background-color: desaturate(darken($primary-color, 15%), 25%);
+      }
+    }
+  }
+
+  .collapser {
+    align-self: stretch;
+    margin: 0 -2rem;
+    border-top: 1px solid #ddd;
+    background-color: desaturate($primary-color, 25%);
+    color: ghostwhite;
+    cursor: pointer;
+
+    &:hover {
+      background-color: desaturate(darken($primary-color, 15%), 25%);
+    }
+
+    &::before {
+      content: '▲';
+    }
+  }
+
+  .collapsible {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease-in-out, opacity .5s ease-in-out;
+    opacity: 1;
+    text-align: left;
+    will-change: max-height;
+  }
+
+  strong {
+    color: $primary-color;
+  }
+
+  ol,
+  ul {
+    margin-top: 0;
+    font-size: 100%;
+
+    li {
+      margin: 0;
+    }
+  }
+}

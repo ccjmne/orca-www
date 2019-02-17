@@ -9,6 +9,8 @@
 @import './styles/menu';
 @import './styles/modal';
 
+@import './src/views/faq.scss';
+
 body,
 html {
   height: 100%;
@@ -59,7 +61,7 @@ body {
 
 [reveal] {
   visibility: hidden;
-  will-change: visibility transform;
+  will-change: visibility, transform;
 }
 
 a {
