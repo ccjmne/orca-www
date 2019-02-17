@@ -8,11 +8,8 @@
   }
 
   .faq-entry {
-    display: flex;
-    flex-direction: column;
+    @include center-content;
     flex-grow: 1;
-    align-items: center;
-    justify-content: center;
     padding: 2rem 2rem 0;
     background-color: white;
   }

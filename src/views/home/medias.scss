@@ -73,6 +73,7 @@
   .pdf-container {
     @include center-content;
     position: relative;
+    flex-direction: row;
     height: calc(420px / 1.5);
     @media ($bp-larger-than-tablet) {
       height: calc(420px / 2);
@@ -114,7 +115,6 @@
 
       .center {
         @include center-content;
-        flex-direction: column;
         flex-grow: 1;
       }
     }

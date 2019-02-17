@@ -36,7 +36,6 @@
 
   .footer-cell {
     @include center-content;
-    flex-direction: column;
     white-space: nowrap;
     @media($bp-larger-than-tablet) {
       text-align: left;

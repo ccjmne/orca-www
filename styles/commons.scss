@@ -9,6 +9,7 @@ $bp-larger-than-desktop: 'min-width: 1000px';
 $bp-larger-than-desktophd: 'min-width: 1200px';
 @mixin center-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
