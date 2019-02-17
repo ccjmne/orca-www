@@ -1,0 +1,24 @@
+$primary-color: #337ab7;
+$success-color: #4caf50;
+$warning-color: #ff9800;
+$danger-color: #e51c23;
+$bp-larger-than-mobile: 'min-width: 400px';
+$bp-larger-than-phablet: 'min-width: 550px';
+$bp-larger-than-tablet: 'min-width: 750px';
+$bp-larger-than-desktop: 'min-width: 1000px';
+$bp-larger-than-desktophd: 'min-width: 1200px';
+@mixin center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin card {
+  overflow: hidden;
+  transition: box-shadow .3s cubic-bezier(.25, .8, .25, 1);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+  }
+}

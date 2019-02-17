@@ -75,7 +75,7 @@ module.exports = (env, argv) => ({
         { loader: MiniCssExtractPlugin.loader },
         { loader: 'css-loader' },
         { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
-        { loader: '@epegzz/sass-vars-loader', options: { syntax: 'scss', files: [path.resolve(__dirname, 'styles/variables.js')] } }
+        { loader: 'sass-resources-loader', options: { resources: './styles/commons.scss' } }
       ]
     }, {
       test: /\.(png|jpe?g|gif|ico)$/,
