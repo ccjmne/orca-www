@@ -16,7 +16,8 @@ export class Router {
   }
 
   async _loadPage() {
-    const { html, hook: pageHook } = await import( /* webpackChunkName: 'partials/[request]' */ `../views/${ window.location.pathname.substr(1) || 'home' }.js`);
+    const view = window.location.pathname.substr(1) || 'home';
+    const { html, hook: pageHook } = await import( /* webpackChunkName: 'partials/[request]' */ `../views/${ view }/${ view }.js`);
     this.root.innerHTML = html;
     menu.close();
     if (typeof pageHook === 'function') {

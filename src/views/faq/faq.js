@@ -1,5 +1,6 @@
 'use strict';
 
+import './faq.scss';
 export { default as html } from './faq.html';
 
 export function hook(root) {

@@ -1,8 +1,11 @@
 'use strict';
 
 import anime from 'animejs';
-import { Interval, OnScreen } from '../utils';
+import { Interval, OnScreen } from '../../utils';
 
+import './medias.scss';
+import './prevention.scss';
+import './values.scss';
 export { default as html } from './home.html';
 export function hook(root) {
   // rotating cards
@@ -33,7 +36,7 @@ export function hook(root) {
     threshold: 0,
     margin: '500px',
     enter: async function () {
-      const { InteractiveChart } = await import( /* webpackChunkName: 'interactive-chart' */ '../interactive-chart/interactive-chart');
+      const { InteractiveChart } = await import( /* webpackChunkName: 'interactive-chart' */ './interactive-chart/interactive-chart');
       (([chart, interval]) => new OnScreen(chartSelector, {
         enter: () => interval.do(() => chart.displayNext()),
         leave: () => interval.stop()
