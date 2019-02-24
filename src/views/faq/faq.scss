@@ -58,21 +58,10 @@
     overflow: hidden;
     transition: max-height .5s ease-in-out, opacity .5s ease-in-out;
     opacity: 1;
-    text-align: left;
     will-change: max-height;
   }
 
   strong {
     color: $primary-color;
-  }
-
-  ol,
-  ul {
-    margin-top: 0;
-    font-size: 100%;
-
-    li {
-      margin: 0;
-    }
   }
 }

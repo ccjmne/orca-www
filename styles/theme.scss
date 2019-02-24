@@ -16,3 +16,18 @@ h5 {
 abbr[title] {
   text-decoration: none;
 }
+
+p {
+  text-align: justify;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  font-size: 100%;
+
+  li {
+    margin: 0;
+    text-align: left;
+  }
+}
