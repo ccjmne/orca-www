@@ -24,7 +24,7 @@ export const api = {
           keyframes: [{ easing: 'easeInCubic', translateZ: '-50vw', rotateY: '25deg' }, { easing: 'easeOutBack', translateZ: '-100vw', rotateY: 0 }]
         }).add({ targets: overlay, opacity: .6, easing: 'easeInOutExpo' }, 0);
         if (typeof onOpen === 'function') {
-          onOpen();
+          onOpen(modals.querySelector(`#${ modalId }`));
         }
       },
       onClose: () => {
@@ -33,7 +33,7 @@ export const api = {
           keyframes: [{ easing: 'easeInCubic', translateZ: '-50vw', rotateY: '20deg' }, { easing: 'easeOutBack', translateZ: 0, rotateY: 0 }]
         }).add({ targets: overlay, opacity: 0, easing: 'easeInOutExpo' }, 0).finished.then(() => api._clearActive());
         if (typeof onClose === 'function') {
-          onClose();
+          onClose(modals.querySelector(`#${ modalId }`));
         }
       }
     });

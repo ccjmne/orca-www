@@ -18,17 +18,26 @@
   cursor: pointer;
 }
 
-.menu-items2 {
-  margin-bottom: 2rem;
+.menu-items {
+  @include center-content;
+  align-items: flex-start;
 
   a {
-    display: block;
-    margin: 2rem;
-    transition: color .2s;
     color: grey;
     letter-spacing: 2px;
     text-decoration: none;
     text-transform: uppercase;
+    $item-count: 4;
+    --color: grey;
+    @for $i from 1 through ($item-count) {
+      &:nth-child(#{$i}) {
+        left: 3rem * ($item-count - $i);
+      }
+    }
+
+    + a {
+      margin-top: 1rem;
+    }
 
     &:hover {
       color: black;
