@@ -1,11 +1,12 @@
 .menu-toggle {
   display: block;
   position: fixed;
-  z-index: 900;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 80px;
   height: 80px;
+  float: left;
   transform-origin: top left;
   border: 2px solid darken(white, 10%);
   border-top: 0;
@@ -17,30 +18,20 @@
   cursor: pointer;
 }
 
-.menu-items {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.menu-items2 {
   margin-bottom: 2rem;
 
   a {
     display: block;
     margin: 2rem;
     transition: color .2s;
-    color: darken(white, 30%);
+    color: grey;
     letter-spacing: 2px;
     text-decoration: none;
     text-transform: uppercase;
 
     &:hover {
-      color: white;
+      color: black;
     }
   }
-}
-
-.vertical-padding {
-  display: none;
-  height: 2000px;
-  margin-top: -1px;
-  background-color: black;
 }
