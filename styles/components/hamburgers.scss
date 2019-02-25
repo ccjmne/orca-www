@@ -21,8 +21,8 @@ $hamburger-hover-filter       : opacity(50%) !default;
 $hamburger-active-hover-filter: $hamburger-hover-filter !default;
 
 $hamburger-types: (
-  spin-r,
+  spin,
 ) !default;
 
 @import '../../node_modules/hamburgers/_sass/hamburgers/_base.scss';
-@import '../../node_modules/hamburgers/_sass/hamburgers/types/_spin-r.scss';
+@import '../../node_modules/hamburgers/_sass/hamburgers/types/_spin.scss';

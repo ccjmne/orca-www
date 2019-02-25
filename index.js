@@ -1,7 +1,7 @@
 'use strict';
 
 require('./main.scss');
-require('./src/modals/modals');
+require('./src/menu');
 require('webfontloader').load({ google: { families: ['Raleway:300', 'Montserrat:300'] } });
 
 import { Router } from './src/spa/routing';
