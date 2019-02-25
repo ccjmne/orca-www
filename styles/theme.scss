@@ -31,3 +31,35 @@ ul {
     text-align: left;
   }
 }
+
+.hover-underline-animation {
+  --color: #ccc;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  color: var(--color);
+
+  &.primary {
+    --color: #{$primary-color};
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color);
+    transform-origin: bottom right;
+    transition: transform .25s ease-out;
+  }
+
+  &:active::after,
+  &:focus::after,
+  &:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
