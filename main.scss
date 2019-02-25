@@ -21,6 +21,12 @@ body {
   background-size: auto;
 }
 
+.sleek-background {
+  background-color: white;
+  background-image: url('./assets/background.svg');
+  background-size: cover;
+}
+
 .outer-wrapper {
   position: relative;
   width: 100%;
@@ -42,9 +48,6 @@ body {
   transform-style: preserve-3d;
   backface-visibility: hidden;
   border: 1px solid white;
-  background-color: white;
-  background-image: url('./assets/background.svg');
-  background-size: cover;
   will-change: transform;
   background-attachment: fixed;
 
