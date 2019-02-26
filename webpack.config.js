@@ -71,11 +71,21 @@ module.exports = (env, argv) => ({
       }]
     }, {
       test: /\.s?css$/,
+      enforce: 'pre',
       use: [
-        { loader: MiniCssExtractPlugin.loader },
-        { loader: 'css-loader' },
+        { loader: 'css-loader' }
+      ]
+    }, {
+      test: /\.scss$/,
+      enforce: 'pre',
+      use: [
         { loader: 'sass-loader', options: { outputStyle: 'compressed' } },
         { loader: 'sass-resources-loader', options: { resources: './styles/commons.scss' } }
+      ]
+    }, {
+      test: /\.s?css$/,
+      use: [
+        { loader: MiniCssExtractPlugin.loader },
       ]
     }, {
       test: /\.(png|jpe?g|gif|ico)$/,
