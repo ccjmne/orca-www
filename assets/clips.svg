@@ -2,6 +2,12 @@
     <clipPath id="arrow-down" clipPathUnits="objectBoundingBox">
         <path d="M 0,0 Q .40,0,.50,.05 Q .60,0,1.00,0 V .95 Q .60,.95,.50,1.00 Q .40,.95,0,.95 z"></path>
     </clipPath>
+    <clipPath id="arrow-down-more" clipPathUnits="objectBoundingBox">
+        <path d="M 0,0 Q .40,0,.50,.10 Q .60,0,1.00,0 V .90 Q .60,.90,.50,1.00 Q .40,.90,0,.90 z"></path>
+    </clipPath>
+    <clipPath id="arrow-down-most" clipPathUnits="objectBoundingBox">
+        <path d="M0,0 H.25 Q.40,0 .50,.15 Q.60,0 .75,0 H1 V.85 H.75 Q.60,.85 .50,1.00 Q.40,.85 .25,.85 H0 z"></path>
+    </clipPath>
     <clipPath id="arrow-up" clipPathUnits="objectBoundingBox">
         <path d="M 0,.05 Q .40,.05,.50,0 Q .60,.05,1.00,.05 V 1.00 Q .60,1.00,.50,.95 Q .40,1.00,0,1.00 z"></path>
     </clipPath>

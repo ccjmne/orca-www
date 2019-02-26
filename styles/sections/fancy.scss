@@ -5,7 +5,10 @@
   color: #fff;
   clip-path: url('#arrow-down');
   @media ($bp-larger-than-phablet) {
-    clip-path: url('#concave');
+    clip-path: url('#concave-more');
+  }
+  @media ($bp-larger-than-desktop) {
+    clip-path: url('#concave-most');
   }
 
   &.stripe {
