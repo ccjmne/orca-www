@@ -40,7 +40,7 @@ module.exports = (env, argv) => ({
         vendors: {
           name: 'commons',
           chunks: 'initial',
-          test: /animejs|[/\\]src[/\\]utils/
+          test: /animejs|[\/\\]src[\/\\]utils/
         }
       }
     }
@@ -67,7 +67,7 @@ module.exports = (env, argv) => ({
       test: /\.html$/,
       use: [{
         loader: 'html-loader',
-        options: { attrs: ['img:src', 'img:data-src'], interpolate: true, root: __dirname, minify }
+        options: { attrs: ['img:src', 'img:data-src', 'video:src', 'video:data-src'], interpolate: true, root: __dirname, minify }
       }]
     }, {
       test: /\.s?css$/,
@@ -88,7 +88,7 @@ module.exports = (env, argv) => ({
         { loader: MiniCssExtractPlugin.loader },
       ]
     }, {
-      test: /\.(png|jpe?g|gif|ico)$/,
+      test: /\.(png|jpe?g|gif|ico|mp4)$/,
       use: [
         { loader: 'image-webpack-loader' },
         { loader: 'url-loader', options: { limit: 2048, outputPath: 'assets/' } }
