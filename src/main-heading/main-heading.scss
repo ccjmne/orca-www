@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  position: relative;
+  padding: 12rem 0 11rem;
+  overflow: hidden;
+  background-color: darken($primary-color, 30%);
+  clip-path: url('#arrow-down-more');
+  @media ($bp-larger-than-phablet) {
+    padding: 15rem 0 14rem;
+    clip-path: url('#concave-more');
+  }
+  @media ($bp-larger-than-desktop) {
+    clip-path: url('#concave-most');
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: fade_out(darken($primary-color, 30%), .3);
+  }
+}
+
+video {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%);
+}
+
+main {
+  color: white;
+  text-align: center;
+}
