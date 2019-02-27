@@ -2,9 +2,10 @@
 
 import { OnScreen } from './utils';
 
-export function reveal(container = document) {
+export function reveal(container = document, { stagger } = {}) {
   new OnScreen(container.querySelectorAll('[reveal]'), {
     once: true,
+    stagger,
     enter: e => {
       e.style.visibility = 'visible';
       if (e.getAttribute('reveal') !== 'instantaneous') {

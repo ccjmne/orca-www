@@ -2,6 +2,7 @@
 
 import './faq.scss';
 export { default as html } from './faq.html';
+export const onLoadOpts = { stagger: 100 };
 
 export function hook(root) {
   [].map
