@@ -54,6 +54,7 @@
 
   .collapsible {
     display: block;
+    align-self: flex-start;
     max-height: 0;
     overflow: hidden;
     transition: max-height .5s ease-in-out, opacity .5s ease-in-out;
