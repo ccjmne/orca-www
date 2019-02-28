@@ -3,3 +3,41 @@
         <h3 class="section-heading">Offres et tarifs</h3>
     </div>
 </main-heading>
+
+<div class="section">
+    <div class="container">
+        <div class="pricing-grid">
+            <pricing-card labels-only="true" grid-area="labels"></pricing-card>
+            <pricing-card reveal class="micro" grid-area="micro">
+                <div slot="heading">
+                    <h3>micro</h3>
+                    <div>280€/mois</div>
+                </div>
+                <span slot="support">Courriel</span>
+                <span slot="data-replication">✗</span>
+                <span slot="employees">≤ 500</span>
+                <div slot="footer"></div>
+            </pricing-card>
+            <pricing-card reveal class="business" bigger grid-area="business">
+                <div slot="heading">
+                    <h3>business</h3>
+                    <div>dès 860€/mois</div>
+                </div>
+                <span slot="employees">65€/500 agents</span>
+                <div slot="footer"></div>
+            </pricing-card>
+            <pricing-card reveal class="partner" grid-area="partner">
+                <div slot="heading">
+                    <h3>partner</h3>
+                    <div>2280€/mois</div>
+                </div>
+                <span class="nice" slot="networking">Haute</span>
+                <span class="nice" slot="database">Dédiée</span>
+                <span class="nice" slot="server-monitoring">✓</span>
+                <span class="nice" slot="employees">Illimités</span>
+                <span class="nice" slot="agile">✓</span>
+                <div slot="footer"></div>
+            </pricing-card>
+        </div>
+    </div>
+</div>
