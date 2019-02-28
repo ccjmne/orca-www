@@ -1,6 +1,6 @@
 .button.button-primary {
   border-radius: 50px;
-  background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 35%), .2));
+  background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 30%), .2));
 
   &[disabled] {
     &,

@@ -17,7 +17,7 @@ html {
 body {
   perspective: 200vw;
   background-color: black;
-  background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 35%), .2) 45%, black), url('./assets/anchors.svg');
+  background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 30%), .2) 45%, black), url('./assets/anchors.svg');
   background-size: auto;
 }
 

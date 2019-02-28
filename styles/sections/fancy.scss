@@ -1,6 +1,6 @@
 .section.fancy {
   background-color: black;
-  background-image: linear-gradient(fade_out(darken($primary-color, 35%), .2), fade_out(darken($primary-color, 35%), .2)), url('./assets/fancy-section.jpg');
+  background-image: linear-gradient(fade_out(darken($primary-color, 30%), .2), fade_out(darken($primary-color, 30%), .2)), url('./assets/fancy-section.jpg');
   background-size: cover;
   color: #fff;
   clip-path: url('#arrow-down');
@@ -16,12 +16,12 @@
   }
 
   &.anchors {
-    background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 35%), .2) 45%, black), url('./assets/anchors.svg');
+    background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 30%), .2) 45%, black), url('./assets/anchors.svg');
     background-size: auto;
   }
 
   &.circuit-board {
-    background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 35%), .2) 45%, black), url('./assets/circuit-board.svg');
+    background-image: linear-gradient(fade_out(darken($primary-color, 20%), .2), fade_out(darken($primary-color, 30%), .2) 45%, black), url('./assets/circuit-board.svg');
     background-size: auto;
   }
 
