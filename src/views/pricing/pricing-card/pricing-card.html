@@ -1,0 +1,56 @@
+<main>
+    <header><slot name="heading"></slot></header>
+    <table class="pricing-table">
+        <tbody>
+            <tr>
+                <td>Accès à la solution</td>
+                <td><slot name="availability"><span class="nice">24/7</span></slot></td>
+            </tr>
+            <tr>
+                <td>Comptes utilisateurs</td>
+                <td><slot name="users"><span class="nice">Illimités</span></slot></td>
+            </tr>
+            <tr>
+                <td>Performance réseau</td>
+                <td><slot name="networking">Modérée</slot></td>
+            </tr>
+            <tr>
+                <td>Base de données</td>
+                <td><slot name="database">Partagée</slot></td>
+            </tr>
+            <tr>
+                <td>Support aux utilisateurs</td>
+                <td><slot name="support"><span class="nice">Chat en direct</span></slot></td>
+            </tr>
+            <tr class="new-section">
+                <td>Chiffrement de bout en bout</td>
+                <td><slot name="encryption"><span class="nice">✓</span></slot></td>
+            </tr>
+            <tr>
+                <td>Sauvegarde de sécurité quoditienne</td>
+                <td><slot name="backup"><span class="nice">✓</span></slot></td>
+            </tr>
+            <tr>
+                <td>Réplication des données</td>
+                <td><slot name="data-replication"><span class="nice">✓</span></slot></td>
+            </tr>
+            <tr>
+                <td>Monitoring de l'activité des serveurs</td>
+                <td><slot name="server-monitoring">✗</slot></td>
+            </tr>
+            <tr class="new-section">
+                <td>Nombre d'agents actifs</td>
+                <td><slot name="employees"></slot></td>
+            </tr>
+            <tr>
+                <td>Accès aux mises à jour</td>
+                <td><slot name="updates"><span class="nice">✓</span></slot></td>
+            </tr>
+            <tr>
+                <td>Ajustements en collaboration AGILE</td>
+                <td><slot name="agile">✗</slot></td>
+            </tr>
+        </tbody>
+    </table>
+    <footer><slot name="footer"></slot></footer>
+</main>

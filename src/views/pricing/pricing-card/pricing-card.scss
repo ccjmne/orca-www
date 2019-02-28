@@ -1,0 +1,93 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+@media($bp-larger-than-desktop) {
+  :host(.bigger) {
+    z-index: 1;
+
+    footer,
+    header {
+      padding-top: 4rem;
+    }
+  }
+
+  :host(:not(.bigger)) {
+    margin-bottom: 2rem;
+  }
+}
+
+:host(.pricing-labels) main {
+  display: none;
+  @media($bp-larger-than-desktop) {
+    display: flex;
+  }
+}
+
+footer,
+header {
+  padding: 2rem;
+
+  :host(:not(.pricing-labels)) & {
+    @include center-content;
+    background: var(--color, darken($primary-color, 15%));
+    color: white;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+
+  :host(:not(.pricing-labels)) & {
+    @include card;
+  }
+}
+
+.nice,
+::slotted(.nice) {
+  color: mediumseagreen;
+}
+
+table.pricing-table {
+  border-collapse: collapse;
+
+  td {
+    padding: .5rem 1.5rem;
+    white-space: nowrap;
+  }
+
+  tr:not(:first-of-type) {
+    border-top: 1px solid #ccc;
+
+    &.new-section {
+      border-width: 3px;
+    }
+  }
+
+  :host(.pricing-labels) & td {
+    text-align: right;
+
+    &:last-of-type {
+      display: none;
+    }
+  }
+
+  :host(:not(.pricing-labels)) & td {
+    &:first-child {
+      padding-left: 12px;
+      text-align: left;
+      @media($bp-larger-than-desktop) {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      text-align: center;
+    }
+  }
+}
