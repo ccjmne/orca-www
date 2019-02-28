@@ -7,6 +7,9 @@ const [wrapper, overlay, modals] = [document.querySelector('.outer-wrapper'), do
 export const api = {
   _setActive(current) { this._current = current; },
   _clearActive() { this._current = null; },
+  hookUp(root = document) {
+    root.querySelectorAll('[data-modal-trigger]').forEach(trigger => trigger.addEventListener('click', () => this.open(trigger.getAttribute('data-modal-trigger')), { passive: true, useCapture: false }));
+  },
   getActive() { return this._current; },
   close() { if (this._current) { MicroModal.close(); } },
   async open(modalId, { onOpen, onClose } = {}) {
@@ -39,5 +42,3 @@ export const api = {
     });
   }
 };
-
-document.querySelectorAll('[data-modal-trigger]').forEach(trigger => trigger.addEventListener('click', () => api.open(trigger.getAttribute('data-modal-trigger')), { passive: true, useCapture: false }));
