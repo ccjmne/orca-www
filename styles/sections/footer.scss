@@ -1,6 +1,12 @@
 .section.footer {
   padding-bottom: 3rem;
   clip-path: url('#cut-topleft');
+  @media($bp-larger-than-phablet) {
+    clip-path: url('#cut-topleft-more');
+  }
+  @media($bp-larger-than-desktop) {
+    clip-path: url('#cut-topleft-most');
+  }
 
   a,
   a:hover,
