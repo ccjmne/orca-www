@@ -17,6 +17,7 @@ $bp-larger-than-desktophd: 'min-width: 1200px';
   overflow: hidden;
   transition: box-shadow .3s cubic-bezier(.25, .8, .25, 1);
   border-radius: 3px;
+  background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
 
   &:hover {
