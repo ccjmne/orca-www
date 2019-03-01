@@ -56,11 +56,6 @@ main {
 table.pricing-table {
   border-collapse: collapse;
 
-  td {
-    padding: .5rem 1.5rem;
-    white-space: nowrap;
-  }
-
   tr:not(:first-of-type) {
     border-top: 1px solid #ccc;
 
@@ -69,7 +64,16 @@ table.pricing-table {
     }
   }
 
+  td {
+    padding: .5rem 0;
+    white-space: nowrap;
+    @media($bp-larger-than-desktop) {
+      padding: .5rem 1.5rem;
+    }
+  }
+
   :host(.pricing-labels) & td {
+    padding: .5rem 1.5rem;
     text-align: right;
 
     &:last-of-type {
@@ -78,16 +82,20 @@ table.pricing-table {
   }
 
   :host(:not(.pricing-labels)) & td {
-    &:first-child {
-      padding-left: 12px;
+    &:first-of-type {
+      padding-left: 1.5rem;
       text-align: left;
       @media($bp-larger-than-desktop) {
         display: none;
       }
     }
 
-    &:last-child {
-      text-align: center;
+    &:last-of-type {
+      padding-right: 1.5rem;
+      text-align: right;
+      @media($bp-larger-than-desktop) {
+        text-align: center;
+      }
     }
   }
 }
