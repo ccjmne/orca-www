@@ -8,14 +8,16 @@
 :host(:hover) {
   z-index: 2;
 }
-
 @media($bp-larger-than-desktop) {
   :host(.bigger) {
     z-index: 1;
 
-    footer,
     header {
       padding-top: 4rem;
+    }
+
+    footer {
+      padding: 3rem 0;
     }
   }
 
@@ -35,10 +37,40 @@ footer,
 header {
   padding: 2rem;
 
+  slot[name=heading] {
+    display: inline-block;
+    transition: transform .2s ease-out;
+
+    :host(:hover) & {
+      transform: translateY(-15%);
+    }
+  }
+
   :host(:not(.pricing-labels)) & {
     @include center-content;
-    background: var(--color, darken($primary-color, 15%));
+    background: var(--background, darken($primary-color, 15%));
     color: white;
+  }
+}
+
+.hover-reveal {
+  display: inline-block;
+  position: absolute;
+  transform: translateY(0%);
+  transition: all .2s ease-out;
+  opacity: 0;
+
+  footer & {
+    transform: translateY(100%);
+  }
+
+  :host(:hover) & {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+
+  :host(:hover) footer & {
+    transform: translateY(0);
   }
 }
 

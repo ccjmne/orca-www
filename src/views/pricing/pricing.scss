@@ -12,9 +12,9 @@ pricing-card h3 {
 }
 
 .micro {
-  --color: #{desaturate($primary-color, 40%)};
+  --background: #{desaturate($primary-color, 40%)};
 }
 
 .partner {
-  --color: #{desaturate(#008577, 30%)};
+  --background: #{desaturate(#008577, 30%)};
 }

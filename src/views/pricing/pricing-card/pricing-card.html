@@ -1,5 +1,5 @@
 <main>
-    <header><slot name="heading"></slot></header>
+    <header><slot name="heading"></slot><slot name="heading-reveal" class="hover-reveal"></slot></header>
     <table class="pricing-table">
         <tbody>
             <tr>
@@ -35,7 +35,7 @@
                 <td><slot name="data-replication"><span class="nice">✓</span></slot></td>
             </tr>
             <tr>
-                <td>Monitoring <span class="larger-than-phablet">de l'activité</span>des serveurs</td>
+                <td>Monitoring <span class="larger-than-phablet">de l'activité</span> des serveurs</td>
                 <td><slot name="server-monitoring">✗</slot></td>
             </tr>
             <tr class="new-section">
@@ -52,5 +52,5 @@
             </tr>
         </tbody>
     </table>
-    <footer><slot name="footer"></slot></footer>
+    <footer><slot name="footer" class="hover-reveal"></slot></footer>
 </main>
