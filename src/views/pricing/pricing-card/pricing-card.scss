@@ -4,6 +4,11 @@
   align-items: stretch;
   justify-content: flex-end;
 }
+
+:host(:hover) {
+  z-index: 2;
+}
+
 @media($bp-larger-than-desktop) {
   :host(.bigger) {
     z-index: 1;
@@ -45,6 +50,10 @@ main {
 
   :host(:not(.pricing-labels)) & {
     @include card;
+  }
+
+  :host(.bigger) & {
+    @include card-higher;
   }
 }
 

@@ -24,6 +24,13 @@ $bp-larger-than-desktophd: 'min-width: 1200px';
     box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
   }
 }
+@mixin card-higher {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+
+  &:hover {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, .30), 0 15px 12px rgba(0, 0, 0, .22);
+  }
+}
 @each $name, $query in ('mobile': $bp-larger-than-mobile, 'phablet': $bp-larger-than-phablet, 'tablet': $bp-larger-than-tablet, 'desktop': $bp-larger-than-desktop, 'desktophd': $bp-larger-than-desktophd) {
   .smaller-than-#{$name} {
     display: inline-block;
