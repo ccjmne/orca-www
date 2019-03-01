@@ -36,7 +36,10 @@ ul {
   text-decoration: none;
   display: inline-block;
   position: relative;
-  color: var(--color, #ccc);
+
+  &, &:hover {
+    color: var(--color, #ccc);
+  }
 
   &::after {
     content: '';
