@@ -108,3 +108,11 @@ table.pricing-table {
     }
   }
 }
+
+.smaller-than-phablet {
+  @include smaller-than($bp-larger-than-phablet);
+}
+
+.larger-than-phablet {
+  @include larger-than($bp-larger-than-phablet);
+}

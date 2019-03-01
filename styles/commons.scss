@@ -31,18 +31,15 @@ $bp-larger-than-desktophd: 'min-width: 1200px';
     box-shadow: 0 19px 38px rgba(0, 0, 0, .30), 0 15px 12px rgba(0, 0, 0, .22);
   }
 }
-@each $name, $query in ('mobile': $bp-larger-than-mobile, 'phablet': $bp-larger-than-phablet, 'tablet': $bp-larger-than-tablet, 'desktop': $bp-larger-than-desktop, 'desktophd': $bp-larger-than-desktophd) {
-  .smaller-than-#{$name} {
-    display: inline-block;
-    @media ($query) {
-      display: none;
-    }
-  }
-
-  .larger-than-#{$name} {
+@mixin smaller-than($breakpoint, $display: inline-block) {
+  display: $display;
+  @media ($breakpoint) {
     display: none;
-    @media ($query) {
-      display: inline-block;
-    }
+  }
+}
+@mixin larger-than($breakpoint, $display: inline-block) {
+  display: none;
+  @media ($breakpoint) {
+    display: $display;
   }
 }
