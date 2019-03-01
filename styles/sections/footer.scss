@@ -1,10 +1,14 @@
 .section.footer {
+  padding-top: 12rem;
   padding-bottom: 3rem;
+  text-align: center;
   clip-path: url('#cut-topleft');
   @media($bp-larger-than-phablet) {
+    padding-top: 16rem;
     clip-path: url('#cut-topleft-more');
   }
   @media($bp-larger-than-desktop) {
+    padding-top: 19rem;
     clip-path: url('#cut-topleft-most');
   }
 
@@ -49,10 +53,11 @@
   }
 
   .legal-notice {
-    font-size: smaller;
-    align-items: center;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 4%;
+    align-items: center;
+    font-size: smaller;
     @media ($bp-larger-than-phablet) {
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: 1fr;
