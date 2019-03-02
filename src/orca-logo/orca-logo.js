@@ -5,7 +5,7 @@ import { OnScreen } from '../utils';
 
 const svgns = 'http://www.w3.org/2000/svg';
 
-class OrcaLogo extends HTMLElement {
+window.customElements.define('orca-logo', class OrcaLogo extends HTMLElement {
 
   static get observedAttributes() {
     return ['animated'];
@@ -13,13 +13,16 @@ class OrcaLogo extends HTMLElement {
 
   constructor() {
     super();
-    this.innerHTML = require('./orca-logo.html');
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.innerHTML = require('./orca-logo.html');
+    (styling => (styling.textContent = require('!./orca-logo.scss'), this.shadowRoot.prepend(styling)))(document.createElement('style'));
+
     // Generate unique clipPath ids for each orca-logo instance
-    const clips = [].map.call(this.querySelectorAll('clipPath[data-clip]'), clip => (clip.id = OrcaLogo._generateUUID(), clip)).reduce((acc, clip) => (acc[clip.getAttribute('data-clip')] = clip.id, acc), {});
-    this.querySelectorAll('[data-clip-path]').forEach(path => path.setAttributeNS(null, 'clip-path', `url(#${ clips[path.getAttribute('data-clip-path')] })`));
-    this.strokes = this.querySelectorAll('path[animate-stroke]');
-    this.fills = this.querySelectorAll('path[animate-fill]');
-    this.reflection = this.querySelector('rect.shine');
+    const clips = [].map.call(this.shadowRoot.querySelectorAll('clipPath[data-clip]'), clip => (clip.id = OrcaLogo._generateUUID(), clip)).reduce((acc, clip) => (acc[clip.getAttribute('data-clip')] = clip.id, acc), {});
+    this.shadowRoot.querySelectorAll('[data-clip-path]').forEach(path => path.setAttributeNS(null, 'clip-path', `url(#${ clips[path.getAttribute('data-clip-path')] })`));
+    this.strokes = this.shadowRoot.querySelectorAll('path[animate-stroke]');
+    this.fills = this.shadowRoot.querySelectorAll('path[animate-fill]');
+    this.reflection = this.shadowRoot.querySelector('rect.shine');
     this.circles = [].map.call(this.strokes, s => {
       const c = s.parentNode.appendChild(document.createElementNS(svgns, 'circle'));
       c.setAttribute('colour', s.getAttribute('colour'));
@@ -35,7 +38,6 @@ class OrcaLogo extends HTMLElement {
     }
   }
 
-  // lifecycle hooks
   connectedCallback() {
     this.addEventListener('mouseenter', this.shine, { passive: true });
     this.addEventListener('touchstart', this.shine, { passive: true });
@@ -71,6 +73,4 @@ class OrcaLogo extends HTMLElement {
   static _generateUUID() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ window.crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
   }
-}
-
-window.customElements.define('orca-logo', OrcaLogo);
+});
