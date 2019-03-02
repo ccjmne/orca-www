@@ -67,7 +67,7 @@ module.exports = (env, argv) => ({
       test: /\.html$/,
       use: [{
         loader: 'html-loader',
-        options: { attrs: ['img:src', 'img:data-src', 'video:src', 'video:data-src'], interpolate: true, root: __dirname, minify }
+        options: { attrs: ['img:src', 'img:data-src', 'video:src', 'video:data-src'], interpolate: true, root: __dirname, minimize: argv.mode === 'production', ...minify }
       }]
     }, {
       test: /\.s?css$/,
