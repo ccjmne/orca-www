@@ -10,6 +10,7 @@ window.customElements.define('main-heading', class MainHeading extends HTMLEleme
 
   connectedCallback() {
     this.shadowRoot.innerHTML = require('./main-heading.html');
+    (styling => (styling.textContent = require('!./main-heading.scss'), this.shadowRoot.prepend(styling)))(document.createElement('style'));
     new OnScreen(this, {
       once: true,
       threshold: 0,
