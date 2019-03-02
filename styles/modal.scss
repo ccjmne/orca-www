@@ -5,6 +5,10 @@
   right: 0;
   bottom: 0;
   left: 0;
+
+  .modal:not(.modal-menu) & {
+    z-index: 1;
+  }
 }
 
 .modal-menu {
