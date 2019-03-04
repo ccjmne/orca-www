@@ -1,0 +1,56 @@
+img.ncls-logo {
+  max-height: 15rem;
+  object-fit: contain;
+}
+
+.extra-margin {
+  margin: 4rem 0;
+}
+
+.philosophy-card {
+  display: grid;
+  grid-gap: 2rem 4%;
+  grid-template: '. picture nameplate .' 'hr hr hr hr' 'quote quote quote quote';
+  align-items: center;
+  margin-top: 4rem;
+  padding: 2rem 4%;
+  @media($bp-larger-than-tablet) {
+    grid-template: '. hr quote' 'picture hr quote' 'nameplate hr quote' '. hr quote';
+  }
+
+  .hr {
+    grid-area: hr;
+    align-self: stretch;
+    margin: 2rem 1rem;
+    border: solid #ccc;
+    border-width: 1px 1px 0 0;
+  }
+
+  img.picture {
+    grid-area: picture;
+    max-height: 15rem;
+    border-radius: 50%;
+    object-fit: contain;
+  }
+
+  .nameplate {
+    grid-area: nameplate;
+    text-align: left;
+    @media($bp-larger-than-tablet) {
+      text-align: unset;
+    }
+
+    .name {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+
+  .philosophy-quote {
+    grid-area: quote;
+  }
+
+  p:last-child {
+    margin: 0;
+  }
+}
