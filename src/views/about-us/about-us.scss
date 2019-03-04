@@ -1,10 +1,24 @@
-img.ncls-logo {
-  max-height: 15rem;
-  object-fit: contain;
-}
+.ncls-grid {
+  display: grid;
+  grid-gap: 2rem 4%;
+  grid-template: 'logo' 'intro';
+  align-items: center;
+  margin-top: 4rem;
+  justify-items: center;
+  @media($bp-larger-than-tablet) {
+    grid-template: 'intro logo';
+  }
 
-.extra-margin {
-  margin: 4rem 0;
+  p {
+    grid-area: intro;
+    margin: 0;
+  }
+
+  img.ncls-logo {
+    grid-area: logo;
+    max-height: 15rem;
+    object-fit: contain;
+  }
 }
 
 .philosophy-card {
