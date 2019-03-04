@@ -88,7 +88,7 @@ module.exports = (env, argv) => ({
         { loader: MiniCssExtractPlugin.loader },
       ]
     }, {
-      test: /\.(png|jpe?g|gif|ico|mp4)$/,
+      test: /\.(png|jpe?g|gif|ico|webp|mp4)$/,
       use: [
         { loader: 'image-webpack-loader' },
         { loader: 'url-loader', options: { limit: 2048, outputPath: 'assets/' } }
