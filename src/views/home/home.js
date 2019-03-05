@@ -6,6 +6,7 @@ import { Interval, OnScreen } from '../../utils';
 import './medias.scss';
 import './prevention.scss';
 import './numbers.scss';
+import './strengths.scss';
 export { default as html } from './home.html';
 export function hook(root) {
   // rotating cards

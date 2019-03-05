@@ -1,0 +1,26 @@
+.strengths {
+  display: grid;
+  grid-gap: 2rem 4%;
+  grid-template: '.';
+  @media($bp-larger-than-tablet) {
+    grid-template: '. .';
+  }
+  @media($bp-larger-than-desktop) {
+    grid-template: '. . .';
+  }
+}
+
+.strength-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 4%;
+
+  p {
+    margin: auto 0 0;
+  }
+}
+
+img.icon {
+  max-width: 150px;
+}
