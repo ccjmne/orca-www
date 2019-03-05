@@ -90,14 +90,25 @@ module.exports = (env, argv) => ({
     }, {
       test: /\.(png|jpe?g|gif|ico|webp|mp4)$/,
       use: [
-        { loader: 'image-webpack-loader' },
         { loader: 'url-loader', options: { limit: 2048, outputPath: 'assets/' } }
       ]
     }, {
-      test: /\.(svg)$/,
+      test: /\.svg$/,
+      issuer: /\.(html|js)$/,
       use: [
-        { loader: 'image-webpack-loader' },
-        { loader: 'svg-url-loader', options: { limit: 4096 } }
+        { loader: 'file-loader', options: { outputPath: 'assets/' } }
+      ]
+    }, {
+      test: /\.svg$/,
+      issuer: /\.s?css$/,
+      use: [
+        { loader: 'svg-url-loader' }
+      ]
+    }, {
+      test: /\.(png|jpe?g|gif|ico|svg|webp|mp4)$/,
+      enforce: 'pre',
+      use: [
+        { loader: 'image-webpack-loader' }
       ]
     }]
   },
