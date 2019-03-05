@@ -34,7 +34,7 @@ export function hook(root) {
   new OnScreen(chartSelector, {
     once: true,
     threshold: 0,
-    margin: '500px',
+    margin: '50%',
     enter: async function () {
       const { InteractiveChart } = await import( /* webpackChunkName: 'interactive-chart' */ './interactive-chart/interactive-chart');
       (([chart, interval]) => new OnScreen(chartSelector, {

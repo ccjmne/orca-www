@@ -14,7 +14,7 @@ window.customElements.define('main-heading', class MainHeading extends HTMLEleme
     new OnScreen(this, {
       once: true,
       threshold: 0,
-      margin: '500px',
+      margin: '50%',
       stagger: 0,
       enter: () => (video => (video.setAttribute('src', video.getAttribute('data-src')), video.playbackRate = .6))(this.shadowRoot.querySelector('video[data-src]:not([src])'))
     });

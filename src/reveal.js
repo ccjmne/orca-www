@@ -17,7 +17,7 @@ export function reveal(container = document, { stagger } = {}) {
   new OnScreen(container.querySelectorAll('img[data-src]:not([src])'), {
     once: true,
     threshold: 0,
-    margin: '500px',
+    margin: '50%',
     stagger: 0,
     enter: i => i.src = i.getAttribute('data-src')
   });
