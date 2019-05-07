@@ -24,13 +24,11 @@ const minify = {
 };
 
 const path = require('path'),
-  assets = path.resolve(__dirname, 'assets'),
-  src = path.resolve(__dirname, 'src');
+  assets = path.resolve(__dirname, 'assets');
 
 module.exports = (env, argv) => ({
   entry: {
-    main: path.resolve(__dirname, 'index.js'),
-    logo: path.resolve(src, 'orca-logo/orca-logo.js')
+    main: path.resolve(__dirname, 'index.js')
   },
   devtool: (argv.mode === 'production' ? '' : 'cheap-module-eval-source-map'),
   optimization: {

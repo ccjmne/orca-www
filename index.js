@@ -1,5 +1,6 @@
 'use strict';
 
+require('orca-logo');
 require('./main.scss');
 require('./src/menu');
 require('webfontloader').load({ google: { families: ['Raleway:300', 'Montserrat:300'] } });
