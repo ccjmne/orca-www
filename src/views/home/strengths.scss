@@ -11,10 +11,10 @@
 }
 
 .strength-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   padding: 2rem 4%;
+  justify-items: center;
 
   p {
     margin: auto 0 0;
