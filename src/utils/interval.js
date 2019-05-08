@@ -14,6 +14,11 @@ export default class Interval {
     this._running = false;
   }
 
+  resume() {
+    this._running = true;
+    window.requestAnimationFrame(this._doLater.bind(this));
+  }
+
   isRunning() {
     return !!this._running;
   }
