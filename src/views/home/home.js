@@ -18,30 +18,40 @@ export function hook(root) {
       loop.add({ targets: container.querySelectorAll('.rotating-card.scanning-card > img'), keyframes: [{}, { top: [0, '100%'], translateY: [0, '-100%'] }, {}], easing: 'easeInOutCubic', duration: scan }, flip);
     }
 
+    container.addEventListener('mouseenter', loop.pause);
+    container.addEventListener('mouseleave', loop.play);
     new OnScreen(container, { enter: loop.play, leave: loop.pause });
   });
 
   // pdf report
   const px = v => `${ Math.round(v / 1.5) }px`;
   const [morph, pdf, dimensions, orientation] = [500, root.querySelector('#pdf'), root.querySelector('#pdf #dimensions'), root.querySelector('#pdf #orientation')];
-  (loop => new OnScreen(pdf, { enter: loop.play, leave: loop.pause }))(anime.timeline({ targets: pdf, duration: morph, easing: 'easeInOutCubic', loop: true, delay: 3000, autoplay: false })
+  (loop => {
+    pdf.addEventListener('mouseenter', loop.pause);
+    pdf.addEventListener('mouseleave', loop.play);
+    new OnScreen(pdf, { enter: loop.play, leave: loop.pause });
+  })(anime.timeline({ targets: pdf, duration: morph, easing: 'easeInOutCubic', loop: true, delay: 3000, autoplay: false })
     .add({ width: px(297), height: px(420), changeBegin: () => anime({ targets: dimensions, opacity: [0, 1], duration: morph, easing: 'linear', begin: () => dimensions.textContent = 'A3' }) })
     .add({ width: px(420), height: px(297), changeBegin: () => anime({ targets: orientation, opacity: [0, 1], duration: morph, easing: 'linear', begin: () => (pdf.classList.add('landscape'), orientation.textContent = 'paysage') }) })
     .add({ width: px(297), height: px(210), changeBegin: () => anime({ targets: dimensions, opacity: [0, 1], duration: morph, easing: 'linear', begin: () => dimensions.textContent = 'A4' }) })
     .add({ width: px(210), height: px(297), changeBegin: () => anime({ targets: orientation, opacity: [0, 1], duration: morph, easing: 'linear', begin: () => (pdf.classList.remove('landscape'), orientation.textContent = 'portrait') }) })
   );
 
-  const chartSelector = 'svg#interactive-chart';
-  new OnScreen(chartSelector, {
+  const chart = root.querySelector('svg#interactive-chart');
+  new OnScreen(chart, {
     once: true,
     threshold: 0,
     margin: '50%',
     enter: async function () {
       const { InteractiveChart } = await import( /* webpackChunkName: 'interactive-chart' */ './interactive-chart/interactive-chart');
-      (([chart, interval]) => new OnScreen(chartSelector, {
-        enter: () => interval.do(() => chart.displayNext()),
-        leave: () => interval.stop()
-      }))([new InteractiveChart(chartSelector), new Interval(4000)]);
+      (([controller, interval]) => {
+        chart.addEventListener('mouseenter', () => interval.stop());
+        chart.addEventListener('mouseleave', () => interval.resume());
+        new OnScreen(chart, {
+          enter: () => interval.do(() => controller.displayNext()),
+          leave: () => interval.stop()
+        });
+      })([new InteractiveChart(chart), new Interval(4000)]);
     }
   });
 }
