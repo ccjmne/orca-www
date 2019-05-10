@@ -111,7 +111,7 @@ module.exports = (env, argv) => ({
     }]
   },
   plugins: [].concat(
-    argv.mode === 'production' ? new CleanWebpackPlugin('dist/**/*') : [],
+    argv.mode === 'production' ? new CleanWebpackPlugin() : [],
     new CopyWebpackPlugin([{ from: path.resolve(assets, 'favicons/'), to: 'favicons/' }]),
     argv.analyze ? new BundleAnalyzerPlugin() : [],
     new MiniCssExtractPlugin({
