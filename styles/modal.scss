@@ -51,8 +51,8 @@
     padding: 0 3rem;
   }
 
-  > :last-child,
-  > :first-child {
+  > :first-child,
+  > :last-child {
     padding: 2rem 3rem;
   }
 }
@@ -88,6 +88,23 @@ textarea {
 
   > *:not(:first-child) {
     margin-left: 2rem;
+  }
+}
+
+.spinner-overlay {
+  display: flex;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, .5);
+
+  & orca-logo {
+    width: 500px;
   }
 }
 

@@ -5,6 +5,9 @@
                 <h3 class="modal__title" id="modal-contact-us-title">Contactez-nous</h3>
                 <p>Utilisez le formulaire suivant ou écrivez-nous directement à <a href="mailto:infos@orca-solution.com">infos@orca-solution.com</a></p>
             </header>
+            <div class="spinner-overlay">
+                <orca-logo animated="spinner"></orca-logo>
+            </div>
             <main class="modal__content" id="modal-contact-us-content">
                 <label for="name">Nom</label>
                 <input class="u-full-width" type="text" id="name" name="name" placeholder="Votre nom" required>
@@ -20,7 +23,7 @@
             </main>
             <footer class="modal__footer">
                 <a class="button" href="javascript:void(0)" data-micromodal-close aria-label="Fermer cette fenêtre">Annuler</a>
-                <input class="button button-primary" type="submit" aria-label="Envoyer" value="Envoyer">
+                <button class="button button-primary" type="submit" aria-label="Envoyer">Envoyer</button>
             </footer>
         </form>
     </div>
