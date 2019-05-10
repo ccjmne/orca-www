@@ -12,7 +12,7 @@ export const api = {
   },
   getActive() { return this._current; },
   close() { if (this._current) { MicroModal.close(); } },
-  async open(modalId, { onOpen, onClose } = {}) {
+  async open(modalId, { onOpen, onClose, noBgAnimation } = {}) {
     if (!modals.querySelector(`#${ modalId }`)) {
       const { 'default': modal } = await import( /* webpackChunkName: 'modals/[request]' */ `./${ modalId }.html`);
       modals.insertAdjacentHTML('beforeend', modal);
@@ -21,20 +21,23 @@ export const api = {
     MicroModal.show(modalId, {
       awaitCloseAnimation: true,
       onShow: () => {
+        if (!noBgAnimation) {
+          anime.timeline({
+            targets: wrapper,
+            keyframes: [{ easing: 'easeInCubic', translateZ: '-50vw', rotateY: '25deg' }, { easing: 'easeOutBack', translateZ: '-100vw', rotateY: 0 }]
+          }).add({ targets: overlay, opacity: .6, easing: 'easeInOutExpo' }, 0);
+        }
+
         api._setActive(modalId);
-        anime.timeline({
-          targets: wrapper,
-          keyframes: [{ easing: 'easeInCubic', translateZ: '-50vw', rotateY: '25deg' }, { easing: 'easeOutBack', translateZ: '-100vw', rotateY: 0 }]
-        }).add({ targets: overlay, opacity: .6, easing: 'easeInOutExpo' }, 0);
         if (typeof onOpen === 'function') {
           onOpen(modals.querySelector(`#${ modalId }`));
         }
       },
       onClose: () => {
-        anime.timeline({
+        (noBgAnimation ? Promise.resolve() : anime.timeline({
           targets: wrapper,
           keyframes: [{ easing: 'easeInCubic', translateZ: '-50vw', rotateY: '20deg' }, { easing: 'easeOutBack', translateZ: 0, rotateY: 0 }]
-        }).add({ targets: overlay, opacity: 0, easing: 'easeInOutExpo' }, 0).finished.then(() => api._clearActive());
+        }).add({ targets: overlay, opacity: 0, easing: 'easeInOutExpo' }, 0).finished).then(() => api._clearActive());
         if (typeof onClose === 'function') {
           onClose(modals.querySelector(`#${ modalId }`));
         }
