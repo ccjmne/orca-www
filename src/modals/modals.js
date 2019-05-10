@@ -16,6 +16,31 @@ export const api = {
     if (!modals.querySelector(`#${ modalId }`)) {
       const { 'default': modal } = await import( /* webpackChunkName: 'modals/[request]' */ `./${ modalId }.html`);
       modals.insertAdjacentHTML('beforeend', modal);
+      if (modalId === 'modal-contact-us') {
+        const [form, submit, overlay] = [modals.querySelector('#modal-contact-us form'), modals.querySelector('#modal-contact-us form button[type=submit]'), modals.querySelector('#modal-contact-us form .spinner-overlay')];
+        form.addEventListener('submit', event => {
+          event.preventDefault();
+          submit.disabled = true;
+          overlay.style.visibility = 'visible';
+          const { email: mail, name, company: org, message: body } = Object
+            .values(form.elements)
+            .filter(({ name }) => !!name)
+            .reduce((acc, field) => ({ ...acc, [field.name]: field.value }), {});
+
+          window.fetch(Object.assign(new URL('https://hxfg23lplg.execute-api.eu-west-1.amazonaws.com/Prod/GET_IN_TOUCH'), { search: new window.URLSearchParams({ name, mail, org }) }), {
+            method: 'post',
+            body
+          }).then(() => {
+            submit.disabled = false;
+            overlay.style.visibility = 'hidden';
+            api.close();
+            api.open('modal-message-received', { noBgAnimation: true });
+          }, () => {
+            submit.disabled = false;
+            overlay.style.visibility = 'hidden';
+          });
+        });
+      }
     }
 
     MicroModal.show(modalId, {
