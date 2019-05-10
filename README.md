@@ -1,2 +1,2 @@
 # orca-www
-Landing page for NCLS Development's Orca solution
+Vanilla JS landing page for NCLS Development's Orca solution.
