@@ -1,6 +1,6 @@
 {
   "name": "orca-www",
-  "version": "0.9.0",
+  "version": "1.0.0-rc.1",
   "description": "Landing page for NCLS Development's Orca solution",
   "main": "index.js",
   "scripts": {
