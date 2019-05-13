@@ -16,12 +16,16 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 50rem;
+    width: 400px;
     min-width: 0;
     max-width: 100vw;
     overflow: hidden;
     transform-origin: top left;
     border-radius: 0 0 100vw;
+
+    > :first-child:last-child {
+      padding: 3rem;
+    }
   }
 
   .modal__content {
@@ -51,8 +55,8 @@
     padding: 0 3rem;
   }
 
-  > :first-child,
-  > :last-child {
+  > :last-child,
+  > :first-child {
     padding: 2rem 3rem;
   }
 }

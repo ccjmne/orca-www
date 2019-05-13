@@ -27,11 +27,11 @@
     letter-spacing: 2px;
     text-decoration: none;
     text-transform: uppercase;
-    $item-count: 4;
+    $item-count: 3;
     --color: grey;
     @for $i from 1 through ($item-count) {
       &:nth-child(#{$i}) {
-        left: 3rem * ($item-count - $i);
+        left: 4rem * ($item-count - $i);
       }
     }
 
