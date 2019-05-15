@@ -1,12 +1,13 @@
-.strengths {
+.container.strengths {
   display: grid;
   grid-gap: 2rem 4%;
   grid-template: '.';
+  max-width: initial;
   @media($bp-larger-than-tablet) {
     grid-template: '. .';
   }
-  @media($bp-larger-than-desktop) {
-    grid-template: '. . .';
+  @media($bp-larger-than-desktophd) {
+    grid-template: '. . . .';
   }
 }
 
